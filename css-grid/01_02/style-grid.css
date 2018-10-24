@@ -1,0 +1,49 @@
+.site{
+  display:grid;
+  grid-template-columns: 2fr repeat(2, 1fr);
+  grid-template-rows: auto 1fr 3fr;
+}
+
+/*manual grid item placement */
+.masthead{
+  grid-column:2/4;
+  grid-row:2/3;
+}
+
+.page-title{
+  grid-column:1/4;
+  grid-row: 1/2;
+}
+.main-content{
+  grid-column:1/2;
+  grid-row: 2/4;
+}
+
+/* implicit lines
+* if grid item placement requires additional columns or rows
+* to be created, the browser adds implicit lines to keep the
+* grid structurally sound
+*/
+
+.footer-content{
+  grid-column:1/4;
+  grid-row: 4;
+}
+
+/* 
+how to make above span across 2 columns ?? 
+
+.footer-content{
+  grid-column: 2 span;
+  grid-columns: 2/2 span;
+}
+
+*/
+
+.footer-content{
+  grid-column: 3 span;
+}
+
+.sidebar{
+  grid-column: 2 span;
+}
