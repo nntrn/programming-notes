@@ -24,14 +24,10 @@ Element containing a grid, defined by setting `display: grid;`
 ## two ways to define size in grid
 
 1. by fractions
-
-```css
-grid-template-columns: 2fr 1fr 1fr;
-```
-
 2. `minmax()`
 
 ```css
+grid-template-columns: 2fr 1fr 1fr;
 grid-template-rows: 1fr minmax(10em,20em) 1fr;
 ```
 
@@ -41,6 +37,45 @@ the `repeat()` notation repeats the provided pattern a specified number of times
 grid-template-columns: repeat(4, 1fr, 10px);
 grid-template-rows: repeat(2, 1fr) 2fr;
 ```
+
+<style>
+.wrapper {
+  display: inline-grid;
+  grid-template-columns: 1fr repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.one {
+  grid-column: 1/4;
+}
+.two {
+  grid-column: 2/4;
+}
+.three {
+  grid-column: 1/1;
+  grid-row: 2/4;
+}
+.four {
+  grid-column: 2 span;
+}
+.five {
+  grid-column: 1/4;
+}
+.wrapper>div {
+  border: 2px solid #fff;
+  background-color: #ffd8a8;
+  padding: 1em;
+  color: #d9480f;
+}
+</style>
+
+  <div class="wrapper">
+    <div class="one">One</div>
+    <div class="two">Two</div>
+    <div class="three">Three</div>
+    <div class="four">Four</div>
+    <div class="five">Five</div>
+  </div>
+
 
 ## further reading
 
