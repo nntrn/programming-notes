@@ -20,6 +20,7 @@ Element containing a grid, defined by setting `display: grid;`
 </div><!-- .site -->
 ```
 
+
 ## two ways to define size in grid
 
 1. by fractions
@@ -40,3 +41,9 @@ the `repeat()` notation repeats the provided pattern a specified number of times
 grid-template-columns: repeat(4, 1fr, 10px);
 grid-template-rows: repeat(2, 1fr) 2fr;
 ```
+
+## further reading
+
+* [complete-guide-grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+* [learn css grid](https://learncssgrid.com/)
+* [CSS Grid Starter Layouts](https://css-tricks.com/snippets/css/css-grid-starter-layouts/)
