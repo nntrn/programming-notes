@@ -1,0 +1,263 @@
+---
+title: "An Evening with Hadley Wickham"
+author: "@nntrn"
+date: "10/25/2018"
+output:
+    html_notebook:
+        code_folding: none
+        df_print: kable
+        mathjax: null
+        number_sections: no
+        toc: yes
+---
+
+## setting up
+
+get the data [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-23)
+
+
+```{r setup, results = 'hide', echo=FALSE}
+knitr::opts_knit$set(root.dir = "/Users/annie/Desktop/notes/R/hadley-wickham/")
+knitr::opts_chunk$set(fig.width = 6, fig.height = 3)
+
+options(stringsAsFactors = FALSE)
+Sys.setenv(TZ = "America/Chicago")
+options(width = 80)
+options(scipen=999) # remove scientific notation
+
+library(kableExtra)
+library(desctable)
+
+
+library(readr)
+library(lubridate)
+library(psych)
+library(tidyverse)
+```
+
+```{r dat, eval = FALSE}
+# notes: change eval = TRUE to download the movies.csv
+# https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-23
+
+URL <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018-10-23/movie_profit.csv"
+movies <- read.csv(text=getURL(URL))
+
+write.csv(movies, file = "movies.csv",row.names = FALSE)
+```
+
+```{r movies}
+movies <-
+  read_csv("movies.csv",
+    col_types = cols(
+      release_date = col_date("%m/%d/%Y")
+    )
+  ) %>%
+  select(-X) %>% #remove the rowid column
+  unique() 
+```
+
+```{r tab, results='asis', echo=FALSE}
+knitr::kable(movies[1:5, ]) %>%
+    kable_styling() %>%
+    scroll_box(width = "100%")
+```
+
+## data exploration
+
+```{r dplyr}
+movies <- movies %>%
+  mutate(
+    ww_profit = worldwide_gross - production_budget,
+    d_profit = domestic_gross - production_budget,
+    # profit multiplier
+    ww_profitm = (worldwide_gross / production_budget) %>% round(3),
+    d_profitm = (domestic_gross / production_budget) %>% round(3)
+  )
+
+# see the movie count per distributor
+movies %>%
+  group_by(distributor, genre) %>%
+  summarise(n = n()) %>%
+  spread(genre, n) %>%
+  print()
+
+# see the genre profit per distributor
+movies %>%
+  group_by(distributor, genre) %>%
+  summarise(
+    ww_profit = sum(ww_profit, na.rm = 0)
+  ) %>%
+  spread(genre, ww_profit)
+
+# get top 10
+describeBy(movies$production_budget,
+  group = list(movies$distributor),
+  mat = TRUE,
+  digits = 2
+) %>%
+  filter(n > 1) %>%
+  arrange(desc(n)) %>%
+  top_n(10, n) %>%
+  select(-c(vars, skew, kurtosis, se, trimmed, mad, item)) %>%
+  select(distributor = group1, everything())
+
+movies %>%
+  group_by(distributor, genre) %>%
+  summarise(n = n()) %>%
+  filter(n > 1) %>%
+  ggplot(aes(n)) +
+  geom_histogram(bins = 10)
+
+```
+
+
+
+
+```{r movies2}
+movies %>%
+  # filter(release_date >= date_filter) %>%
+  ggplot(aes(release_date)) +
+  geom_histogram(binwidth = 365)
+
+# create movies2
+date_filter <- as.Date("2000-01-01")
+movies2 <- movies %>%
+  filter(
+    release_date >= date_filter,
+    release_date <= Sys.Date()
+  )
+
+# movie count per genre
+movies2 %>%
+  #filter(release_date >= date_filter) %>%
+  group_by(genre, year = floor_date(release_date, "year")) %>%
+  summarise(n = n()) %>%
+  ggplot(aes(year, n, colour = genre)) +
+  geom_line()
+```
+
+## descriptive stats
+
+```{r statdesc}
+quantile(movies2$domestic_gross)
+
+do.call("rbind", as.list(
+    by(movies2, list(movies=movies2$genre), function(x){
+        y <- subset(x, select=c(domestic_gross,worldwide_gross,production_budget)) 
+        apply(y, 2, mean) 
+    })))
+
+by(movies2[c("domestic_gross","worldwide_gross","production_budget")], movies2[,"genre"], 
+   function(x){ describe(x, skew=FALSE) %>% select(-c(1,se,sd))  }, simplify = TRUE)
+```
+
+## data exploration
+
+```{r boxplot}
+library(ggrepel)
+
+movies2 %>%
+  group_by(year = floor_date(release_date, "year"), genre) %>%
+  summarise(n = n(), ww_profit = mean(ww_profit)) %>%
+  ggplot(aes(genre, ww_profit, label = format(year, "%Y"))) +
+  # geom_bar(stat="identity") +
+  geom_boxplot(fill = "white", colour = "#3366FF") +
+  #geom_jitter() +
+   geom_text_repel(size=3, label.r  = 0) +
+  # geom_jitter(aes(colour = format(year,"%Y")),width = 0.2) +
+  # guides(col = guide_legend(title="year",ncol = 2))+
+  scale_y_continuous(labels = scales::unit_format(scale = 1e-6)) +
+  theme_grey()
+```
+
+## notes from event
+
+```{r hadley}
+# movie count per genre
+movies %>%
+  filter(release_date >= date_filter) %>%
+  ggplot(aes(production_budget / 1e6)) +
+  geom_histogram(binwidth = 1)
+
+movies2 %>%
+  ggplot(aes((production_budget / 1e6) %% 10)) +
+  geom_histogram(binwidth = 1)
+
+# filter by production_budget
+movies2 %>%
+  filter(production_budget > 120e6) %>%
+  ggplot(aes(production_budget / 1e6)) +
+  geom_histogram(binwidth = 1)
+
+# BEWARE OF FLOATING POINT DIFFERENCES
+tibble(
+  x = seq(0, 1, length = 11),
+  x3 = 0.3,
+  x - x3
+)
+
+movies2 %>%
+  filter(production_budget > 150e6) %>%
+  select(1:4)
+
+movies2 %>%
+  filter(production_budget > 120e6) %>%
+  ggplot(aes(production_budget / 1e6)) +
+  geom_histogram(binwidth = 10) +
+  xlim(100, 200)
+
+# more appropriate for communication
+movies2 %>%
+  ggplot(aes(production_budget)) +
+  geom_histogram(bins = 30) +
+  scale_x_continuous(labels = scales::unit_format(scale = 1e-6))
+
+# are dollars adjusted for inflation?
+movies2 %>%
+  ggplot(aes(release_date, production_budget)) +
+  geom_point() +
+  geom_smooth()
+
+movies2 %>%
+  ggplot(aes(domestic_gross / 1e6)) +
+  geom_histogram(binwidth = 10)
+
+# predict: very little relationship
+# challenge: all the data (basically) is in the bottom left corner
+
+movies2 %>%
+  ggplot(aes(production_budget / 1e6, domestic_gross / 1e6)) +
+  # geom_point(alpha = 1 / 10)
+  geom_jitter(alpha = 1 / 10, stroke = 0, size = 3, width = 5) +
+  geom_smooth()
+
+movies2 %>%
+  ggplot(aes(
+    production_budget / 1e6,
+    domestic_gross / 1e6,
+    # group = (production_budget / 1e6) * 10
+    group = plyr::round_any(production_budget, 10e6)
+  )) +
+  geom_boxplot() +
+  facet_wrap(~genre, ncol = 2)
+
+# budget < gross -> gross / budget in (1, oo) - (0, oo)
+# budget > gross -> gross / budget in [0, 1) (-oo, 0)
+
+movies2 %>%
+  # ggplot(aes(domestic_gross / production_budget)) +
+  ggplot(aes(worldwide_gross / production_budget)) +
+  geom_histogram(binwidth = .1) +
+  geom_vline(xintercept = 1) +
+  # make it symmetrical
+  scale_x_log10()
+
+movies2 %>%
+  filter(worldwide_gross / production_budget > 1) %>%
+  ggplot(aes(worldwide_gross / production_budget)) +
+  geom_histogram(boundary = 0, binwidth = 1) +
+  geom_vline(xintercept = 1) +
+  coord_trans(x = "log10")
+```
+
+`coord_cartesian(expand = FALSE)`
