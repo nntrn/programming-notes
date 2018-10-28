@@ -1,0 +1,155 @@
+---
+title: "austin crime"
+author: "@nntrn"
+date: "10/25/2018"
+output:
+    html_notebook:
+      code_folding: none
+      css: ../../resources/Rnotebook-style.css
+      favicon: ../../resources/favicon.png
+      df_print: kable
+      mathjax: null
+      toc: yes
+---
+
+austin crime data for 2017
+
+> crime is at the lowest in january (this is true for 2018)
+
+# setting up
+
+get the data [here](https://data.austintexas.gov/Public-Safety/Crime-Reports-2018/vmn9-3bvu) (last updated 10/22)
+
+```{r setup, results = 'hide'}
+knitr::opts_knit$set(root.dir = "/Users/annie/Desktop/notes/R/austin crime/")
+knitr::opts_chunk$set(fig.width = 6, fig.height = 3)
+
+library(readr)
+library(lubridate)
+library(kableExtra)
+library(DescTools)
+library(tidyverse)
+```
+
+
+```{r cdata, results = 'hide'}
+crime <- read_csv("Crime_Reports_2017.csv",
+  col_types = cols(
+    `Occurred Date` = col_date("%m/%d/%Y"),
+    `Report Date` = col_date("%m/%d/%Y")
+  )
+)
+```
+
+# data manipulation
+
+```{r manipulate, results='hide'}
+# make column names R friendly
+colnames(crime) <- gsub(" ", "_", colnames(crime)) %>% tolower()
+
+round_to <- function(x, to = 10) round(x / to) * to
+
+crime2 <- crime %>%
+  filter(occurred_date >= as.Date("2017-01-01")) %>%
+  mutate(
+      # date/time
+    month = ordered(toupper(format(occurred_date, "%b")),toupper(month.abb)),
+    day = ordered(
+        toupper(format(occurred_date, "%a")), 
+        c("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")),
+    hoc_parent = round_to(highest_offense_code, 100), 
+    hour = round_to(occurred_time,100)
+  ) %>%
+    mutate(
+        street = sapply(address, function(x){gsub(pattern = " BLOCK ", replacement = " ", x)})
+    ) 
+
+
+```
+
+# explore data using DescTools
+```{r desc}
+
+# crime2 %>% 
+#     select(
+#         -contains("time"),
+#         -contains("coordinate"),
+#         -contains("clearance"),
+#         -contains("report"),
+#         -c("incident_number")
+#         ) 
+
+crime2 %>%
+    select(category_description, highest_offense_description, occurred_date,  apd_district) %>%
+    group_by(apd_district) %>%
+    Desc(., plotit = FALSE)
+```
+
+# data exploration
+
+```{r ggtheme, result='hide'}
+my_theme <- theme_minimal() +
+  theme(
+    axis.text.x = element_text(colour = "grey20", size = 15, face = "bold"),
+    axis.text.y = element_text(colour = "grey20", size = 15, face = "bold")
+  )
+
+theme_set(my_theme)
+```
+
+```{r explore}
+# offense category by day
+crime2 %>%
+  with(table(category_description, day))
+
+crime2 %>%
+   filter(toupper(category_description) == "THEFT") %>%
+  ggplot(aes(occurred_date, colour=day)) +
+  geom_histogram(binwidth = 30)
+
+# show theft offenses count with over 8 offenses
+crime2 %>%
+    filter(toupper(category_description) == "THEFT" | str_detect(highest_offense_description, "THEFT")) %>%
+  group_by(highest_offense_description, month) %>%
+  summarise(n = n()) %>%
+  filter(
+    n > 8
+  ) %>%
+  spread(month, n)
+
+# DAY
+crime2 %>%
+  group_by(category_description, day) %>%
+  summarise(n = n()) %>%
+  filter(n > 8) %>%
+  spread(day, n)
+
+# MONTH
+crime2 %>%
+  group_by(category_description, month) %>%
+  summarise(n = n()) %>%
+  filter(n > 8) %>%
+  spread(month, n)
+
+crime2 %>%
+  filter(
+    toupper(category_description) == "THEFT" | str_detect(highest_offense_description, "THEFT")
+  ) %>%
+  group_by(highest_offense_description, month) %>%
+  summarise(n = n()) %>%
+  filter(n > 1) %>%
+  spread(month, n)   
+
+# DWI
+crime2 %>%
+  filter(
+    str_detect(highest_offense_description, "DWI")
+  ) %>% 
+    mutate(street2 = gsub("(.+)\\s([[:alnum:]]\\s.*)", "\\2", street)) %>%
+  group_by(street2, location_type) %>%
+  summarise(n = n()) %>%
+  filter(n > 1) %>%
+  arrange(desc(n)) 
+```
+
+

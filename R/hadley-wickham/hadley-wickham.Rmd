@@ -4,11 +4,11 @@ author: "@nntrn"
 date: "10/25/2018"
 output:
     html_notebook:
-        code_folding: none
-        df_print: kable
-        mathjax: null
-        number_sections: no
-        toc: yes
+      code_folding: none
+      css: ~/programming-notes/R/hadley-wickham/style.css
+      df_print: kable
+      mathjax: null
+      toc: yes
 ---
 
 ## setting up
@@ -27,12 +27,22 @@ options(scipen=999) # remove scientific notation
 
 library(kableExtra)
 library(desctable)
-
+library(scales)
 
 library(readr)
 library(lubridate)
 library(psych)
 library(tidyverse)
+```
+
+```{r ggtheme, result='hide'}
+my_theme <- theme_minimal() +
+  theme(
+    axis.text.x = element_text(colour = "grey20", size = 15, face = "bold"),
+    axis.text.y = element_text(colour = "grey20", size = 15, face = "bold")
+  )
+
+theme_set(my_theme)
 ```
 
 ```{r dat, eval = FALSE}
@@ -89,6 +99,8 @@ movies %>%
   ) %>%
   spread(genre, ww_profit)
 
+usd <- dollar_format(prefix = "$")
+
 # get top 10
 describeBy(movies$production_budget,
   group = list(movies$distributor),
@@ -98,8 +110,12 @@ describeBy(movies$production_budget,
   filter(n > 1) %>%
   arrange(desc(n)) %>%
   top_n(10, n) %>%
-  select(-c(vars, skew, kurtosis, se, trimmed, mad, item)) %>%
-  select(distributor = group1, everything())
+  select(-c(vars, skew, kurtosis, se, sd, trimmed, mad, item, range)) %>%
+  select(distributor = group1, everything()) %>%
+  mutate(
+    mean = dollar(mean),
+    median = dollar(median)
+  )
 
 movies %>%
   group_by(distributor, genre) %>%
@@ -107,7 +123,6 @@ movies %>%
   filter(n > 1) %>%
   ggplot(aes(n)) +
   geom_histogram(bins = 10)
-
 ```
 
 
@@ -133,13 +148,13 @@ movies2 %>%
   group_by(genre, year = floor_date(release_date, "year")) %>%
   summarise(n = n()) %>%
   ggplot(aes(year, n, colour = genre)) +
-  geom_line()
+  geom_line(size=2)
 ```
 
 ## descriptive stats
 
 ```{r statdesc}
-quantile(movies2$domestic_gross)
+quantile(movies2$domestic_gross) 
 
 do.call("rbind", as.list(
     by(movies2, list(movies=movies2$genre), function(x){
@@ -150,6 +165,7 @@ do.call("rbind", as.list(
 by(movies2[c("domestic_gross","worldwide_gross","production_budget")], movies2[,"genre"], 
    function(x){ describe(x, skew=FALSE) %>% select(-c(1,se,sd))  }, simplify = TRUE)
 ```
+
 
 ## data exploration
 
@@ -162,12 +178,9 @@ movies2 %>%
   ggplot(aes(genre, ww_profit, label = format(year, "%Y"))) +
   # geom_bar(stat="identity") +
   geom_boxplot(fill = "white", colour = "#3366FF") +
-  #geom_jitter() +
-   geom_text_repel(size=3, label.r  = 0) +
+  geom_text_repel(size = 3.5,segment.color = "gray") +
   # geom_jitter(aes(colour = format(year,"%Y")),width = 0.2) +
-  # guides(col = guide_legend(title="year",ncol = 2))+
-  scale_y_continuous(labels = scales::unit_format(scale = 1e-6)) +
-  theme_grey()
+  scale_y_continuous(labels = scales::unit_format(scale = 1e-6)) 
 ```
 
 ## notes from event

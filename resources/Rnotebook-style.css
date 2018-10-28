@@ -1,0 +1,11 @@
+code,
+pre {
+  font-family: menlo, consolas, monospace;
+  border: none;
+  word-break: keep-all !important;
+
+}
+
+pre>code {
+  font-size: .95em;
+}
