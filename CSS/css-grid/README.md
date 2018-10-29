@@ -1,4 +1,6 @@
+
 # css grid
+
 notes taken from
 CSS: Advanced Layouts with Grid by
 Morten Rand-Hendriksen
@@ -8,6 +10,7 @@ Morten Rand-Hendriksen
 ---
 
 ## grid container
+
 Element containing a grid, defined by setting `display: grid;`
 
 ```css
@@ -19,7 +22,6 @@ Element containing a grid, defined by setting `display: grid;`
 <footer class="footer"> </footer>
 </div><!-- .site -->
 ```
-
 
 ## two ways to define size in grid
 
