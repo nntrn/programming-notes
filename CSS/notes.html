@@ -2,9 +2,9 @@
       <title>notes</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--       
-      <link rel="stylesheet" href="file:////Users/annie/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.8/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
-       -->
+      
+      <link rel="stylesheet" href="file:////Users/annie/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.10/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
       
       
       
@@ -220,7 +220,6 @@ code.language-yaml {
 }
 .markdown-preview.markdown-preview body {
   font-family: -apple-system, Helvetica, Roboto, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
-  font-size: 14px;
   padding: 0 26px;
   line-height: 18px;
   word-wrap: break-word;
@@ -253,10 +252,10 @@ code.language-yaml {
 .markdown-preview.markdown-preview hr {
   border: 0;
   height: 2px;
-  border-bottom: 2px solid;
+  border-bottom: 0px solid transparent;
 }
 .markdown-preview.markdown-preview h1 {
-  padding-bottom: 0.3em;
+  padding-bottom: 0.3rem;
   line-height: 1.2;
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -294,10 +293,16 @@ code.language-yaml {
 .markdown-preview.markdown-preview mark {
   background: #f8ea83;
 }
+.markdown-preview.markdown-preview mark code {
+  font-size: .9rem;
+  padding: 0px;
+  border-radius: 0px;
+  background: white;
+  box-shadow: inset 1px 1px #f8ea83, inset -1px -2px #f8ea83;
+}
 .markdown-preview.markdown-preview code {
   font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
   font-size: inherit;
-  line-height: 14px;
 }
 .markdown-preview.markdown-preview pre {
   font-size: .77em!important;
@@ -344,7 +349,8 @@ code.language-yaml {
   background: #ffd9e0;
   border-left: 12px solid #ff4a6e;
 }
-.markdown-preview.markdown-preview blockquote.info {
+.markdown-preview.markdown-preview blockquote.info,
+.markdown-preview.markdown-preview blockquote {
   background: #fff6d5;
   border-left: 12px solid #f0d461;
 }
@@ -352,8 +358,7 @@ code.language-yaml {
   background: #86e29b;
   border-left: 12px solid #28a745;
 }
-.markdown-preview.markdown-preview blockquote.note,
-.markdown-preview.markdown-preview blockquote {
+.markdown-preview.markdown-preview blockquote.note {
   background: #f0f0f0;
   border-left: 12px solid #ccc;
 }
@@ -363,6 +368,7 @@ code.language-yaml {
 }
 .markdown-preview.markdown-preview blockquote code {
   margin: 1rem 0 0;
+  background: white;
 }
 .markdown-preview.markdown-preview code[class*="language-"],
 .markdown-preview.markdown-preview pre[class*="language-"] {
@@ -394,21 +400,38 @@ code.language-yaml {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview   ">
-      <h2>bookmarks</h2>
+      <h1 class="mume-header" id="bookmarks">bookmarks</h1>
+
 <ul>
-<li><a href="#css-animations--effects">CSS animations &amp; effects</a></li>
-<li><a href="#gradient">gradient</a></li>
+<li><a href="#bookmarks">bookmarks</a>
+<ul>
+<li><a href="#animations">animations</a>
+<ul>
+<li><a href="#animation-timing-function">animation timing function</a></li>
+</ul>
+</li>
+<li><a href="#gradient">gradient</a>
+<ul>
+<li><a href="#gradient-diagonal-stripes">Gradient Diagonal Stripes</a></li>
+</ul>
+</li>
 <li><a href="#less">LESS</a></li>
 <li><a href="#random">random</a>
 <ul>
+<li><a href="#em-vs-rem-vs-px">em vs rem vs px</a></li>
 <li><a href="#font-face">@font-face</a></li>
 </ul>
 </li>
 </ul>
-<h2 class="mume-header" id="css-animations-effectshttpslearn-the-webalgonquindesigncatopicscss-animations-effects-cheat-sheet"><a href="https://learn-the-web.algonquindesign.ca/topics/css-animations-effects-cheat-sheet/">CSS animations &amp; effects</a></h2>
+</li>
+</ul>
+<h2 class="mume-header" id="animations">animations</h2>
 
 <ul>
+<li><a href="https://learn-the-web.algonquindesign.ca/topics/css-animations-effects-cheat-sheet/">cheatsheet</a></li>
 <li><a href="https://subvisual.co/blog/posts/62-perfecting-a-css-3d-animation/">Perfecting a CSS 3D animation</a></li>
+<li><a href="https://codeburst.io/a-guide-to-css-animation-part-2-2cd422f78567">A Guide to CSS Animation&#x200A;&#x2014;&#x200A;Part 2</a></li>
+<li><a href="https://codeburst.io/from-design-to-code-creating-and-animating-images-with-css-b10c2464f37a">From Design to Code: Creating and Animating Images with CSS</a></li>
 </ul>
 <pre data-role="codeBlock" data-info="css" class="language-css"> <span class="token atrule"><span class="token rule">@keyframes</span> wiggle</span> <span class="token punctuation">{</span>
   <span class="token selector">0%  </span><span class="token punctuation">{</span> <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateX</span><span class="token punctuation">(</span><span class="token number">0</span>em<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span>
@@ -427,7 +450,6 @@ code.language-yaml {
   <span class="token comment">/* moves right 200px, doesn&#x2019;t move down */</span>
   <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span><span class="token number">200</span>px, <span class="token number">0</span><span class="token punctuation">)</span> 
 
- 
   <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotate</span><span class="token punctuation">(</span><span class="token number">30</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token comment">/* moves right 200px, doesn&#x2019;t move down */</span>
   <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span><span class="token number">200</span>px, <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -436,7 +458,18 @@ code.language-yaml {
   <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1.5</span>, <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token punctuation">}</span>
-</pre><h2 class="mume-header" id="gradient">gradient</h2>
+</pre><h3 class="mume-header" id="animation-timing-function">animation timing function</h3>
+
+<ul>
+<li><code>cubic-bezier(x1, y1, x2, y2)</code> - provides ability to define custom speed</li>
+<li><code>ease</code> - start and end slowly but speedier in the middle(default)</li>
+<li><code>ease-in</code>- start slowly</li>
+<li><code>ease-in-out</code> - start and end slowly but not the same as ease</li>
+<li><code>ease-out</code> - end slowly</li>
+<li><code>linear</code> - maintain speed throughout</li>
+<li><code>steps(number, direction &lt;optional&gt;)</code> - provides a way to split the animation into equal steps. direction values can either be start or end. start means that the first step happens at the start of the animation. end means that the last step happens at the end of the animation. end is the default value.</li>
+</ul>
+<h2 class="mume-header" id="gradient">gradient</h2>
 
 <ul>
 <li><a href="https://css-tricks.com/stripes-css/">Stripes in CSS</a></li>
@@ -445,17 +478,16 @@ code.language-yaml {
 <li><a href="https://www.gradient-animator.com/">gradient animaor</a></li>
 </ul>
 <pre data-role="codeBlock" data-info="CSS" class="language-css"><span class="token selector"><span class="token class">.stripes</span> </span><span class="token punctuation">{</span>
-
   <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>
-  <span class="token number">45</span>deg,
-  <span class="token hexcode">#606dbc</span>,
-  <span class="token hexcode">#606dbc</span> <span class="token number">10</span>px,
-  <span class="token hexcode">#465298</span> <span class="token number">10</span>px,
-  <span class="token hexcode">#465298</span> <span class="token number">20</span>px
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token number">45</span>deg,
+    <span class="token hexcode">#606dbc</span>,
+    <span class="token hexcode">#606dbc</span> <span class="token number">10</span>px,
+    <span class="token hexcode">#465298</span> <span class="token number">10</span>px,
+    <span class="token hexcode">#465298</span> <span class="token number">20</span>px
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h3 class="mume-header" id="gradient-diagonal-stripes">Gradient Diagonal Stripes</h3>
 
-<span class="token comment">/* Gradient Diagonal Stripes */</span>
-<span class="token property">background</span><span class="token punctuation">:</span> 
+<pre data-role="codeBlock" data-info="CSS" class="language-css"><span class="token property">background</span><span class="token punctuation">:</span> 
   <span class="token comment">/* On &quot;top&quot; */</span>
   <span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>
     <span class="token number">45</span>deg,
@@ -499,6 +531,54 @@ LESS comes with a <code>less.js</code> file which is really easy to deploy in yo
 </pre><hr>
 <h2 class="mume-header" id="random">random</h2>
 
+<h3 class="mume-header" id="em-vs-rem-vs-px">em vs rem vs px</h3>
+
+<ul>
+<li>EM will scale padding and margins too</li>
+<li>Use REM for consistent padding and margins</li>
+</ul>
+<p><code>em</code> scales by updating one value</p>
+<pre data-role="codeBlock" data-info="HTML" class="language-html">html { font-size: 1em; }
+h1 { font-size: 2.074em; }
+h2 { font-size: 1.728em; }
+h3 { font-size: 1.44em; }
+h4 { font-size: 1.2em; }
+small { font-size: 0.833em; }
+.box { padding: 1.25em; }
+@media screen and (min-width: 1400px) {
+  html { font-size: 1.25em; }
+}
+</pre><p>Or, recalculate every <code>px</code> value</p>
+<pre data-role="codeBlock" data-info="HTML" class="language-html">html { font-size: 16px; }
+h1 { font-size: 33px; }
+h2 { font-size: 28px; }
+h3 { font-size: 23px; }
+h4 { font-size: 19px; }
+small { font-size: 13px; }
+.box { padding: 20px; }
+@media screen and (min-width: 1400px) {
+  html { font-size: 20px; }
+  h1 { font-size: 41px; }
+  h2 { font-size: 35px; }
+  h3 { font-size: 29px; }
+  h4 { font-size: 24px; }
+  small { font-size: 17px; }
+  .box { padding: 25px; }
+}
+</pre><p>There&#x2019;s only one <code>em</code> value to overwrite in the media query, <mark>because <code>em</code> inherits and scales relative to its parent (html in this case) font size</mark>, similar to the way vector paths scale proportionally.</p>
+<p>REM as in Root EM</p>
+<ul>
+<li>While <code>em</code> is relative to the font size of its direct or nearest parent,</li>
+<li><code>rem</code> is only relative to the html (root) font-size.</li>
+</ul>
+<p>I like to think of it as a reset. If a style sheet is built in a modular fashion, then <code>rem</code> shouldn&#x2019;t be needed very often, but it can be handy at times.</p>
+<p>For example, if you&#x2019;re trying to achieve consistent spacing without extra markup, rem can be used to define the padding and margins.</p>
+<p><code>px</code> can be used for consistent padding and margins too, but it doesn&#x2019;t scale across media queries like <code>em</code> and <code>rem</code>.</p>
+<p><strong>Conclusion</strong><br>
+I use em for nearly everything, rem occasionally for padding or margins, but only in a pinch, and px some times for borders.</p>
+<p>For the most part, I want children to inherit size. If a sidebar is going to be a smaller font size, then I expect all its children to resize proportionally without having to calculate and redefine individual selectors.</p>
+<p>I struggle to think of a good reason to use rem for font-size values, but I&#x2019;m sure there are exceptions. If I&#x2019;m trying to reset a font size with rem, it&#x2019;s probably a sign my CSS is not very modular and due for a refactor</p>
+<p><a href="https://j.eremy.net/confused-about-rem-and-em/">source</a></p>
 <h3 class="mume-header" id="font-face">@font-face</h3>
 
 <pre data-role="codeBlock" data-info="LESS" class="language-less"><span class="token comment">// Deepest Possible Browser Support</span>

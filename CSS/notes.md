@@ -1,16 +1,15 @@
 
-bookmarks
-----
+# bookmarks
 
-- [animations](#animations)
-  - [animation timing function](#animation-timing-function)
-- [gradient](#gradient)
-  - [Gradient Diagonal Stripes](#gradient-diagonal-stripes)
-- [LESS](#less)
-- [random](#random)
-  - [em vs rem vs px](#em-vs-rem-vs-px)
-  - [@font-face](#font-face)
-
+* [bookmarks](#bookmarks)
+  * [animations](#animations)
+    * [animation timing function](#animation-timing-function)
+  * [gradient](#gradient)
+    * [Gradient Diagonal Stripes](#gradient-diagonal-stripes)
+  * [LESS](#less)
+  * [random](#random)
+    * [em vs rem vs px](#em-vs-rem-vs-px)
+    * [@font-face](#font-face)
 
 ## animations
 
@@ -18,7 +17,6 @@ bookmarks
 * [Perfecting a CSS 3D animation](https://subvisual.co/blog/posts/62-perfecting-a-css-3d-animation/)
 * [A Guide to CSS Animation — Part 2](https://codeburst.io/a-guide-to-css-animation-part-2-2cd422f78567)
 * [From Design to Code: Creating and Animating Images with CSS](https://codeburst.io/from-design-to-code-creating-and-animating-images-with-css-b10c2464f37a)
-
 
 ```css
  @keyframes wiggle {
@@ -47,6 +45,7 @@ bookmarks
 
 }
 ```
+
 ### animation timing function
 
 * `cubic-bezier(x1, y1, x2, y2)` - provides ability to define custom speed
@@ -58,11 +57,11 @@ bookmarks
 * `steps(number, direction <optional>)` - provides a way to split the animation into equal steps. direction values can either be start or end. start means that the first step happens at the start of the animation. end means that the last step happens at the end of the animation. end is the default value.
 
 ## gradient
+
 * [Stripes in CSS](https://css-tricks.com/stripes-css/)
 * [CSS gradient patterns](http://lea.verou.me/css3patterns/)
 * [more CSS gradient patterns](https://bennettfeely.com/gradients/)
 * [gradient animaor](https://www.gradient-animator.com/)
-
 
 ```CSS
 .stripes {
@@ -115,14 +114,12 @@ background:
 }
 ```
 
-
 ## LESS
 
 **Using JavaScript**
 LESS comes with a `less.js` file which is really easy to deploy in your website. Create a stylesheet with `.less` extension and link it in your document using the `rel="stylesheet/less"` attribute.
 
 > You are all set and can compose styles within the .less. The LESS syntax will be compiled on the fly as the page loads. ==Keep in mind that using JavaScript is discouraged at the production stage as it will badly affect the website performance==
-
 
 ```HTML
 <link rel="stylesheet/less" type="text/css" href="main.less" />
@@ -134,14 +131,13 @@ LESS comes with a `less.js` file which is really easy to deploy in your website.
 ## random
 
 ### em vs rem vs px
-[source](https://j.eremy.net/confused-about-rem-and-em/)
 
 * EM will scale padding and margins too
 * Use REM for consistent padding and margins
 
 `em` scales by updating one value
 
-```
+```HTML
 html { font-size: 1em; }
 h1 { font-size: 2.074em; }
 h2 { font-size: 1.728em; }
@@ -156,7 +152,7 @@ small { font-size: 0.833em; }
 
 Or, recalculate every `px` value
 
-```
+```HTML
 html { font-size: 16px; }
 h1 { font-size: 33px; }
 h2 { font-size: 28px; }
@@ -174,9 +170,11 @@ small { font-size: 13px; }
   .box { padding: 25px; }
 }
 ```
+
 There’s only one `em` value to overwrite in the media query, ==because `em` inherits and scales relative to its parent (html in this case) font size==, similar to the way vector paths scale proportionally.
 
-**REM as in Root EM**
+REM as in Root EM
+
 * While `em` is relative to the font size of its direct or nearest parent, 
 * `rem` is only relative to the html (root) font-size. 
 
@@ -191,7 +189,9 @@ I use em for nearly everything, rem occasionally for padding or margins, but onl
 
 For the most part, I want children to inherit size. If a sidebar is going to be a smaller font size, then I expect all its children to resize proportionally without having to calculate and redefine individual selectors.
 
-I struggle to think of a good reason to use rem for font-size values, but I’m sure there are exceptions. If I’m trying to reset a font size with rem, it’s probably a sign my CSS is not very modular and due for a refactor.  ∎
+I struggle to think of a good reason to use rem for font-size values, but I’m sure there are exceptions. If I’m trying to reset a font size with rem, it’s probably a sign my CSS is not very modular and due for a refactor
+
+[source](https://j.eremy.net/confused-about-rem-and-em/)
 
 ### @font-face
 
@@ -220,5 +220,3 @@ I struggle to think of a good reason to use rem for font-size values, but I’m 
         url('myfont.woff') format('woff');
 }
 ```
-
-
