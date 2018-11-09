@@ -1,0 +1,58 @@
+html body[for="html-export"] .markdown-preview {
+  width: 72%;
+}
+
+html {
+  font-size: 100%;
+}
+
+.custom-TOC {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 26%;
+  max-width: 200px;
+  height: 85%;
+  font-size: .85rem;
+  overflow: scroll;
+  line-height: 120%;
+  margin: 3% 2%;
+  margin-top: 70px;
+  margin-right:0%;
+}
+
+.custom-TOC summary {
+  position: fixed;
+  top: 50px;
+  width: 26%;
+  background: #fff;
+}
+
+html body h1 {
+  margin: 0;
+}
+
+.custom-TOC ul {
+  display: table-row;
+  font-size: 1.05rem;
+  margin: 0 2%;
+}
+
+.custom-TOC ul>li>ul>li {
+  font-size: .925rem;
+}
+
+.custom-TOC ul ul {
+  display: list-item;
+}
+
+.custom-TOC details[open] {
+  background: transparent;
+  border:none!important;
+}
+
+.custom-TOC details[open]:hover, .custom-TOC details[open]:focus {
+  background: #fff;
+}
+
+  li {margin: 0px!important; line-height:116%;}

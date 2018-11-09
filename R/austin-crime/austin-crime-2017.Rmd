@@ -1,0 +1,155 @@
+---
+title: "austin-crime-2017"
+author: "@nntrn"
+date: "11/6/2018"
+output: 
+  html_notebook: 
+    toc: yes
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# knitr::opts_knit$set(root.dir = "/Users/annie/Desktop/notes/R/austin crime/")
+knitr::opts_chunk$set(fig.width = 6, fig.height = 3)
+
+library(lubridate)
+library(kableExtra)
+library(DescTools)
+library(tidyverse)
+
+my_theme <- theme_minimal() +
+  theme(
+    axis.text.x = element_text(colour = "grey20", size = 13, face = "bold"),
+    axis.text.y = element_text(colour = "grey20", size = 8, face = "bold"),
+   legend.position="bottom", legend.box = "horizontal"
+  )
+
+theme_set(my_theme)
+
+```
+
+austin crime data for 2017
+
+> crime is at the lowest in january (this is also true for 2018)
+
+# setting up
+
+get the data [here](https://data.austintexas.gov/Public-Safety/Crime-Reports-2018/vmn9-3bvu) (last updated 10/22)
+
+
+```{r cdata, results = 'hide'}
+crime <- read_csv("Crime_Reports_2017.csv",
+  col_types = cols(
+    `Occurred Date` = col_date("%m/%d/%Y"),
+    `Report Date` = col_date("%m/%d/%Y")
+  )
+)
+```
+
+# data manipulation
+
+```{r manipulate, results='hide'}
+# make column names R friendly
+colnames(crime) <- gsub(" ", "_", colnames(crime)) %>% tolower()
+
+round_to <- function(x, to = 10) round(x / to) * to
+
+crime2 <- crime %>%
+    filter(occurred_date >= as.Date("2017-01-01")) %>%
+    mutate(
+        ## TIME RELATED ======
+        month = ordered(toupper(format(occurred_date, "%b")), toupper(month.abb)),
+        day = ordered(
+            toupper(format(occurred_date, "%a")),
+            c("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+        ),
+        hoc_parent = round_to(highest_offense_code, 100),
+        hour = round_to(occurred_time, 100),
+        
+        ## LOCATION RELATED ========
+        street = sapply(
+            address, function(x) { gsub(pattern = " BLOCK ", replacement = " ", x) }),
+        
+        street_num = sapply(
+            street, function(x) {  str_extract(x, "^[0-9]*")   }),
+        
+        # removes all leading street numbers
+        street_name = sapply(
+            street, function(x) { gsub("^[0-9]*\\s", "", x)  }),
+        
+        street_name1 = sapply(
+            street_name, function(x) {  str_split_fixed(x, " / ", 2)[1]  }),
+        
+        street_name2 = sapply(
+            street_name, function(x) {  str_split_fixed(x, " / ", 2)[2]  }),
+        
+        ## street value count are split for incidents with a listed intersection
+        value = 1,
+        value = ifelse(street_name2 != "", .5, value)
+        
+        #,street_name = str_split_fixed(street, "\\s", 2)[2]
+        
+    ) 
+
+reported_streets <-
+  rbind(
+    crime2 %>%
+      select(id = incident_number, street_name = street_name2, zip = zip_code, value) %>%
+      filter(street_name != ""),
+    crime2 %>%
+      select(id = incident_number, street_name = street_name1, zip = zip_code, value) %>%
+      filter(street_name != "")
+  )
+
+reported_streets %>%
+    group_by(street_name, zip) %>%
+  summarise(n = n(), s= sum(value)) %>%
+    arrange(desc(n)) 
+
+```
+
+## shiny
+
+
+```{r ggplot}
+
+input_zip <- "78757"
+
+p <- reported_streets %>%
+  left_join(
+    crime2 %>%
+      select(id = incident_number, category_description, month, zip_code, occurred_date),
+    by = "id"
+  ) %>%
+  filter(
+    # street_name == "BURNET RD",
+    zip_code == input_zip,
+    category_description != ""
+  )
+
+p %>%
+  group_by(month, category_description) %>%
+  summarise(n = n(), s = sum(value)) %>%
+  ggplot(aes(month, s, color = category_description)) +
+  geom_point(size=2,alpha=.7) + 
+    labs(title = paste("2017 crime for ",input_zip))
+    
+   
+p %>%  group_by(street_name, category_description) %>%
+  summarise(n = n()) %>% 
+    filter(n > 3) %>% #top_n(15) %>%
+    ggplot(aes(x=n, y=street_name, colour=category_description, label=n)) +
+    geom_point(shape=16,size=3) + 
+    geom_text(aes(label=ifelse(n>6,n,'')),hjust=-1,vjust=.25,size=3)+
+    labs(title = paste("crime in ",input_zip))
+
+
+# numericInput("rows", "How many cars?", 5)
+# 
+# renderTable({
+#   head(cars, input$rows)
+# })
+```
+

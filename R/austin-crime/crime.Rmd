@@ -4,17 +4,17 @@ author: "@nntrn"
 date: "10/25/2018"
 output:
     html_notebook:
+      highlight: textmate
       code_folding: none
-      css: ../../resources/Rnotebook-style.css
-      favicon: ../../resources/favicon.png
+      css: "/Users/annie/programming-notes/resources/Rnotebook-style.css"
+      favicon: "/Users/annie/programming-notes/resources/favicon.png"
       df_print: kable
       mathjax: null
-      toc: yes
 ---
 
 austin crime data for 2017
 
-> crime is at the lowest in january (this is true for 2018)
+> crime is at the lowest in january (this is also true for 2018)
 
 # setting up
 
@@ -24,12 +24,13 @@ get the data [here](https://data.austintexas.gov/Public-Safety/Crime-Reports-201
 knitr::opts_knit$set(root.dir = "/Users/annie/Desktop/notes/R/austin crime/")
 knitr::opts_chunk$set(fig.width = 6, fig.height = 3)
 
-library(readr)
 library(lubridate)
 library(kableExtra)
 library(DescTools)
 library(tidyverse)
 ```
+
+
 
 
 ```{r cdata, results = 'hide'}
@@ -50,24 +51,76 @@ colnames(crime) <- gsub(" ", "_", colnames(crime)) %>% tolower()
 round_to <- function(x, to = 10) round(x / to) * to
 
 crime2 <- crime %>%
-  filter(occurred_date >= as.Date("2017-01-01")) %>%
-  mutate(
-      # date/time
-    month = ordered(toupper(format(occurred_date, "%b")),toupper(month.abb)),
-    day = ordered(
-        toupper(format(occurred_date, "%a")), 
-        c("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")),
-    hoc_parent = round_to(highest_offense_code, 100), 
-    hour = round_to(occurred_time,100)
-  ) %>%
+    filter(occurred_date >= as.Date("2017-01-01")) %>%
     mutate(
-        street = sapply(address, function(x){gsub(pattern = " BLOCK ", replacement = " ", x)})
+        ## TIME RELATED ======
+        month = ordered(toupper(format(occurred_date, "%b")), toupper(month.abb)),
+        day = ordered(
+            toupper(format(occurred_date, "%a")),
+            c("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+        ),
+        hoc_parent = round_to(highest_offense_code, 100),
+        hour = round_to(occurred_time, 100),
+        
+        ## LOCATION RELATED ========
+        street = sapply(
+            address, function(x) { gsub(pattern = " BLOCK ", replacement = " ", x) }),
+        
+        street_num = sapply(
+            street, function(x) {  str_extract(x, "^[0-9]*")   }),
+        
+        # removes all leading street numbers
+        street_name = sapply(
+            street, function(x) { gsub("^[0-9]*\\s", "", x)  }),
+        
+        street_name1 = sapply(
+            street_name, function(x) {  str_split_fixed(x, " / ", 2)[1]  }),
+        
+        street_name2 = sapply(
+            street_name, function(x) {  str_split_fixed(x, " / ", 2)[2]  }),
+        
+        ## street value count are split for incidents with a listed intersection
+        value = 1,
+        value = ifelse(street_name2 != "", .5, value)
+        
+        #,street_name = str_split_fixed(street, "\\s", 2)[2]
+        
     ) 
 
 
+reported_streets <-
+  rbind(
+    crime2 %>%
+      select(id = incident_number, street_name = street_name2, zip = zip_code, value) %>%
+      filter(street_name != ""),
+    crime2 %>%
+      select(id = incident_number, street_name = street_name1, zip = zip_code, value) %>%
+      filter(street_name != "")
+  )
+
+
+reported_streets %>%
+    group_by(street_name, zip) %>%
+  summarise(n = n(), s= sum(value)) %>%
+    arrange(desc(n)) %>%
+    View()
+
+
+mtcars %>% 
+  mutate(mpg_level = "high",
+    mpg_level = ifelse(mpg < 25, "medium-high", mpg_level),
+    mpg_level = ifelse(mpg < 20, "medium-low", mpg_level),
+    mpg_level = ifelse(mpg < 15, "low", mpg_level)
+    ) %>% 
+    sample_n(6)
+
 ```
 
+
 # explore data using DescTools
+
+<details><summary>expand</summary>
+
 ```{r desc}
 
 # crime2 %>% 
@@ -80,10 +133,14 @@ crime2 <- crime %>%
 #         ) 
 
 crime2 %>%
-    select(category_description, highest_offense_description, occurred_date,  apd_district) %>%
+    select(category_description, hour,  highest_offense_description, occurred_date,  apd_district) %>%
     group_by(apd_district) %>%
-    Desc(., plotit = FALSE)
+    Desc(., plotit = TRUE)
 ```
+
+</details>
+
+
 
 # data exploration
 
