@@ -64,6 +64,7 @@ html {
 * [things i learned on my own](#things-i-learned-on-my-own)
   * [playing with 3D](#playing-with-3d)
   * [**setting stuff in the :root](#setting-stuff-in-the-root)
+* [snippets](#snippets)
 
 </details></div>
 
@@ -1024,3 +1025,8 @@ div.test-3d {
   background: var(--maroon);
 }
 ```
+
+
+## snippets
+
+https://css-tricks.com/snippets/css/
