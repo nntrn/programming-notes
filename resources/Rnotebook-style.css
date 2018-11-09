@@ -3,31 +3,9 @@ pre {
   font-family: menlo, consolas, monospace;
   border: none;
   word-break: keep-all !important;
-  white-space: pre-wrap !important;
-  overflow-x: scroll !important;
+
 }
 
 pre>code {
   font-size: .95em;
-}
-
-
-* {
-  outline: 0
-}
-
-details {
-  width: 95%;
-  border-left: 1px solid #5a6872;
-  padding-left: 5%;
-}
-
-details pre:not(.r) {
-  white-space: pre;
-  overflow-x: scroll;
-  font-size: .8em;
-}
-
-details pre.r {
-  border-radius: 0px;
 }
