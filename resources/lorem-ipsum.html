@@ -1,40 +1,536 @@
-<p>One morning, when Gregor Samsa woke from troubled
-  dreams, he found himself transformed in his bed into
-  a horrible vermin. He lay on his armour-like back,
-  and if he lifted his head a little he could see his
-  brown belly, slightly domed and divided by arches into
-  stiff sections. The bedding was hardly able to cover
-  <strong>strong</strong> it and seemed ready to slide
-  off any moment. His many legs, pitifully thin
-  compared with the size of the rest of him,
-  <a class="external ext" href="#">link</a> waved about
-  helplessly as he looked. "What's happened to me? " he
-  thought. It wasn't a dream. His room, a proper human
-  room although a little too small, lay peacefully
-  between its four familiar walls.</p>
+<div>
+  <h2>Reboot</h2>
+</div>
+<div>
+  <div>
+    <p>Reboot, a collection of element-specific CSS changes in a single file,
+      kickstart Bootstrap to provide an elegant, consistent, and simple
+      baseline to build upon</p>
+    <p><a href="http://getbootstrap.com/docs/4.0/content/reboot/">http://getbootstrap.com/docs/4.0/content/reboot/</a></p>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"> -->
+  </div>
+  <div>
+    <h2>Approach</h2>
+    <p>Reboot builds upon Normalize, providing many HTML elements with somewhat
+      opinionated styles using only element selectors. Additional styling is
+      done only with classes. For example, we reboot some <code>&lt;table&gt;</code>
+      styles for a simpler baseline and later provide <code>.table</code>,
+      <code>.table-bordered</code>, and more.</p>
+    <p>Here are our guidelines and reasons for choosing what to override in
+      Reboot:</p>
+    <ul>
+      <li>Update some browser default values to use <code>rem</code>s instead
+        of <code>em</code>s for scalable component spacing.</li>
+      <li>Avoid <code>margin-top</code>. Vertical margins can collapse,
+        yielding unexpected results. More importantly though, a single
+        direction of <code>margin</code> is a simpler mental model.</li>
+      <li>For easier scaling across device sizes, block elements should use
+        <code>rem</code>s for <code>margin</code>s.</li>
+      <li>Keep declarations of <code>font</code>-related properties to a
+        minimum, using <code>inherit</code> whenever possible.</li>
+    </ul>
+    <h2>Page defaults</h2>
+    <p>The <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> elements
+      are updated to provide better page-wide defaults. More specifically:</p>
+    <ul>
+      <li>The <code>box-sizing</code> is globally set on every
+        element—including <code>*::before</code> and <code>*::after</code>, to
+        <code>border-box</code>. This ensures that the declared width of
+        element is never exceeded due to padding or border.
+        <ul>
+          <li>No base <code>font-size</code> is declared on the <code>\&lt;html\&gt;</code>,
+            but <code>16px</code> is assumed (the browser default). <code>font-size:
+              1rem</code> is applied on the <code>&lt;body&gt;</code> for easy
+            responsive type-scaling via media queries while respecting user
+            preferences and ensuring a more accessible approach.</li>
+        </ul>
+      </li>
+      <li>The <code>&lt;body&gt;</code> also sets a global <code>font-family</code>,
+        <code>line-height</code>, and <code>text-align</code>. This is
+        inherited later by some form elements to prevent font inconsistencies.</li>
+      <li>For safety, the <code>&lt;body&gt;</code> has a declared <code>background-color</code>,
+        defaulting to <code>#fff</code>.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Native font stack</h3>
+    <p>The default web fonts (<strong>Helvetica Neue</strong>, <strong>Helvetica</strong>,
+      and <strong>Arial</strong>) have been dropped in Bootstrap 4 and replaced
+      with a “native font stack” for optimum text rendering on every device and
+      OS. Read more about native font stacks in this Smashing Magazine article</p>
+    <pre><div><div style="counter-reset:ace_line 0"><div>$font-family-sans-serif:
+</div><div>  // Safari for OS X and iOS (San Francisco)
+</div><div>  -apple-system,
+</div><div>  // Chrome &lt; 56 for OS X (San Francisco)
+</div><div>  BlinkMacSystemFont,
+</div><div>  // Windows
+</div><div>  "Segoe UI",
+</div><div>  // Android
+</div><div>  "Roboto",
+</div><div>  // Basic web fallback
+</div><div>  "Helvetica Neue", Arial, sans-serif,
+</div><div>  // Emoji fonts
+</div><div>  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+</div></div></div></pre>
+  </div>
+  <div>
+    <p>This <code>font-family</code> is applied to the <code>&lt;body&gt;</code>
+      and automatically inherited globally throughout Bootstrap. To switch the
+      global <code>font-family</code>, update <code>$font-family-base</code>
+      and recompile Bootstrap.</p>
+    <h2>Headings and paragraphs<a href="http://getbootstrap.com/docs/4.0/content/reboot/#headings-and-paragraphs"></a></h2>
+    <p>All heading elements—e.g., <code>&lt;h1&gt;</code>—and <code>&lt;p&gt;</code>
+      are reset to have their <code>margin-top</code> removed. Headings have
+      <code>margin-bottom: .5rem</code> added and paragraphs <code>margin-bottom:
+        1rem</code> for easy spacing.</p>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Heading</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p><code>&lt;h1&gt;&lt;/h1&gt;</code></p>
+          </td>
+          <td><span><h1>h1. Bootstrap heading<h1></span></td>
+        </tr>
+        <tr>
+          <td>
+            <p><code>&lt;h2&gt;&lt;/h2&gt;</code></p>
+          </td>
+          <td><span><h2>h2. Bootstrap heading<h2></span></td>
+        </tr>
+        <tr>
+          <td>
+            <p><code>&lt;h3&gt;&lt;/h3&gt;</code></p>
+          </td>
+          <td><span><h3>h3. Bootstrap heading<h3></span></td>
+        </tr>
+        <tr>
+          <td>
+            <p><code>&lt;h4&gt;&lt;/h4&gt;</code></p>
+          </td>
+          <td><span><h4>h4. Bootstrap heading<h4></span></td>
+        </tr>
+        <tr>
+          <td>
+            <p><code>&lt;h5&gt;&lt;/h5&gt;</code></p>
+          </td>
+          <td><span><h5>h5. Bootstrap heading<h5></span></td>
+        </tr>
+        <tr>
+          <td>
+            <p><code>&lt;h6&gt;&lt;/h6&gt;</code></p>
+          </td>
+          <td><span><h6>h6. Bootstrap heading<h6></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Lists</h2>
+    <p>All lists—<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, and <code>&lt;dl&gt;</code>—have
+      their <code>margin-top</code> removed and a <code>margin-bottom: 1rem</code>.
+      Nested lists have no <code>margin-bottom</code>.</p>
+    <ul>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Consectetur adipiscing elit</li>
+      <li>Integer molestie lorem at massa</li>
+      <li>Facilisis in pretium nisl aliquet</li>
+      <li>Nulla volutpat aliquam velit
+        <ul>
+          <li>Phasellus iaculis neque</li>
+          <li>Purus sodales ultricies</li>
+          <li>Vestibulum laoreet porttitor sem</li>
+          <li>Ac tristique libero volutpat at</li>
+        </ul>
+      </li>
+      <li>Faucibus porta lacus fringilla vel</li>
+      <li>Aenean sit amet erat nunc</li>
+      <li>Eget porttitor lorem</li>
+    </ul>
+    <ol>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Consectetur adipiscing elit</li>
+      <li>Integer molestie lorem at massa</li>
+      <li>Facilisis in pretium nisl aliquet</li>
+      <li>Nulla volutpat aliquam velit</li>
+      <li>Faucibus porta lacus fringilla vel</li>
+      <li>Aenean sit amet erat nunc</li>
+      <li>Eget porttitor lorem</li>
+    </ol>
+  </div>
+  <div>
+    <p>For simpler styling, clear hierarchy, and better spacing, description
+      lists have updated <code>margin</code>s. <code>&lt;dd&gt;</code>s reset
+      <code>margin-left</code> to <code>0</code> and add <code>margin-bottom:
+        .5rem</code>. <code>&lt;dt&gt;</code>s are bolded.</p>
+    <dl>
+      <dt>Description lists</dt>
+      <dd>A description list is perfect for defining terms.</dd>
+      <dt>Euismod</dt>
+      <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio
+        sem.</dd>
+      <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+      <dt>Malesuada porta</dt>
+      <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+    </dl>
+  </div>
+  <div>
+    <h2>Preformatted text</h2>
+    <p>The <code>&lt;pre&gt;</code> element is reset to remove its <code>margin-top</code>
+      and use <code>rem</code> units for its <code>margin-bottom</code>.</p>
+    <h2>Tables</h2>
+    <p>Tables are slightly adjusted to style <code>&lt;caption&gt;</code>s,
+      collapse borders, and ensure consistent <code>text-align</code>
+      throughout. Additional changes for borders, padding, and more come with
+      <a href="http://getbootstrap.com/docs/4.0/content/tables/">the <code>.table</code>
+        class</a></p>
+    <div>
+      <table>
+        <caption>
+          This is an example table, and this is its caption to describe the
+          contents.
+        </caption>
+        <thead>
+          <tr>
+            <th>Table heading</th>
+            <th>Table heading</th>
+            <th>Table heading</th>
+            <th>Table heading</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Table cell</td>
+            <td>Table cell</td>
+            <td>Table cell</td>
+            <td>Table cell</td>
+          </tr>
+          <tr>
+            <td>Table cell</td>
+            <td>Table cell</td>
+            <td>Table cell</td>
+            <td>Table cell</td>
+          </tr>
+          <tr>
+            <td>Table cell</td>
+            <td>Table cell</td>
+            <td>Table cell</td>
+            <td>Table cell</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <h2>Forms</h2>
+    <p>Various form elements have been rebooted for simpler base styles. Here
+      are some of the most notable changes:</p>
+    <ul>
+      <li><code>&lt;fieldset&gt;</code>s have no borders, padding, or margin so
+        they can be easily used as wrappers for individual inputs or groups of
+        inputs.</li>
+      <li><code>&lt;legend&gt;</code>s, like fieldsets, have also been restyled
+        to be displayed as a heading of sorts.</li>
+      <li><code>&lt;label&gt;</code>s are set to <code>display: inline-block</code>
+        to allow <code>margin</code> to be applied.</li>
+      <li><code>&lt;input&gt;</code>s, <code>&lt;select&gt;</code>s, <code>&lt;textarea&gt;</code>s,
+        and <code>&lt;button&gt;</code>s are mostly addressed by Normalize, but
+        Reboot removes their <code>margin</code> and sets <code>line-height:
+          inherit</code>, too.</li>
+      <li><code>&lt;textarea&gt;</code>s are modified to only be resizable
+        vertically as horizontal resizing often “breaks” page layout.</li>
+    </ul>
+    <p>These changes, and more, are demonstrated below.</p>
+    <form>
+      <fieldset>
+        <legend>Example legend</legend>
+        <p><label for="input">Example input</label> <input
+            placeholder="Example input" type="text"></p>
+        <p><label for="select">Example select</label> <select>
+            <option value="">Choose...</option>
+            <optgroup label="Option group 1">
+              <option value="">Option 1</option>
+              <option value="">Option 2</option>
+              <option value="">Option 3</option>
+            </optgroup>
+            <optgroup label="Option group 2">
+              <option value="">Option 4</option>
+              <option value="">Option 5</option>
+              <option value="">Option 6</option>
+            </optgroup>
+          </select></p>
+        <p><label><input type="checkbox" value=""> Check this checkbox</label></p>
+        <p><label><input checked="checked" id="optionsRadios1" name="optionsRadios"
+              type="radio" value="option1"> Option one is this and that</label>
+          <label><input id="optionsRadios2" name="optionsRadios" type="radio"
+              value="option2"> Option two
+            is something else that's also super long to demonstrate the
+            wrapping of these
+            fancy form controls.</label> <label><input disabled="disabled" id="optionsRadios3"
+              name="optionsRadios" type="radio" value="option3"> Option three
+            is
+            disabled</label></p>
+        <p><label for="textarea">Example textarea</label>
+          <textarea rows="3"></textarea></p>
+        <p><label for="date">Example date</label> <input type="date"></p>
+        <p><label for="time">Example time</label> <input type="time"></p>
+        <p><label for="output">Example output</label> <output name="result">100</output></p>
+        <p><button type="submit">Button submit</button> <input type="submit"
+            value="Input submit button"> <input type="button" value="Input button"></p>
+        <p><button disabled="disabled" type="submit">Button submit</button>
+          <input disabled="disabled" type="submit" value="Input submit button">
+          <input disabled="disabled" type="button" value="Input button"></p>
+      </fieldset>
+    </form>
+  </div>
+  <div>
+    <h2>Misc elements</h2>
+    <h3>Address</h3>
+    <p>The <code>&lt;address&gt;</code> element is updated to reset the browser
+      default <code>font-style</code> from <code>italic</code> to <code>normal</code>.
+      <code>line-height</code> is also now inherited, and <code>margin-bottom:
+        1rem</code> has been added. <code>&lt;address&gt;</code>s are for
+      presenting contact information for the nearest ancestor (or an entire
+      body of work). Preserve formatting by ending lines with <code>&lt;br&gt;</code>.</p>
+    <div>
+      <address>
+        <strong>Twitter, Inc.</strong><br>
+        1355 Market St, Suite 900<br>
+        San Francisco, CA 94103<br>
+        <abbr title="Phone">P:</abbr> (123) 456-7890
+      </address>
+      <address>
+        <strong>Full Name</strong><br>
+        <a href="mailto:#">first.last@example.com</a>
+      </address>
+    </div>
+    <h3>Blockquote<a href="http://getbootstrap.com/docs/4.0/content/reboot/#blockquote"></a></h3>
+    <p>The default <code>margin</code> on blockquotes is <code>1em 40px</code>,
+      so we reset that to <code>0 0 1rem</code> for something more consistent
+      with other elements.</p>
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+        posuere erat a ante.<br>
+        Someone famous in Source Title</p>
+    </blockquote>
+    <h3>Inline elements<a href="http://getbootstrap.com/docs/4.0/content/reboot/#inline-elements"></a></h3>
+    <p>The <code>&lt;abbr&gt;</code> element receives basic styling to make it
+      stand out amongst paragraph text.</p>
+    <p>Nulla <abbr title="attribute">attr</abbr> vitae elit libero, a pharetra
+      augue.</p>
+    <h3>Summary<a href="http://getbootstrap.com/docs/4.0/content/reboot/#summary"></a></h3>
+    <p>The default <code>cursor</code> on summary is <code>text</code>, so we
+      reset that to <code>pointer</code> to convey that the element can be
+      interacted with by clicking on it.</p>
+    <details>
+      <summary>Some details</summary>
+      <p>More info about the details.</p>
+    </details>
+    <details open="">
+      <summary>Even more details</summary>
+      <p>Here are even more details about the details.</p>
+    </details>
+    <h2>HTML5 <code>[hidden]</code> attribute<a href="http://getbootstrap.com/docs/4.0/content/reboot/#html5-hidden-attribute"></a></h2>
+    <p>HTML5 adds <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden">a
+        new global attribute named <code>[hidden]</code></a>, which is styled
+      as <code>display: none</code> by default. Borrowing an idea from <a href="https://purecss.io/">PureCSS</a>,
+      we improve upon this default by making <code>[hidden] { display: none
+        !important; }</code> to help prevent its <code>display</code> from
+      getting accidentally overridden. While <code>[hidden]</code> isn’t
+      natively supported by IE10, the explicit declaration in our CSS gets
+      around that problem.</p>
+    <pre><div><div style="counter-reset:ace_line 0"><div>&lt;input type="text" hidden&gt;
+</div></div></div></pre>
+    <p><a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse"
+        href="#collapseExample" role="button">Link with href</a> <button
+        aria-controls="collapseExample" aria-expanded="false" data-target="#collapseExample"
+        data-toggle="collapse" type="button">Button with data-target</button></p>
+    <div>
+      <div>Anim pariatur cliche reprehenderit, enim eiusmod
+        high life accusamus terry richardson ad squid. Nihil anim keffiyeh
+        helvetica,
+        craft beer labore wes anderson cred nesciunt sapiente ea proident.</div>
+    </div>
+  </div>
+  <div>
+    <p>Card titles are used by adding <code>.card-title</code> to a <code>&lt;h*&gt;</code>
+      tag. In the same way, links are added and placed next to each other by
+      adding <code>.card-link</code> to an <code>&lt;a&gt;</code> tag.</p>
+    <p>Subtitles are used by adding a <code>.card-subtitle</code> to a <code>&lt;h*&gt;</code>
+      tag. If the <code>.card-title</code> and the <code>.card-subtitle</code>items
+      are placed in a <code>.card-body</code> item, the card title and subtitle
+      are aligned nicely.</p>
+  </div>
+  <div>
+    <ul>
+      <li><code>.collapse</code> hides content</li>
+      <li><code>.collapsing</code> is applied during transitions</li>
+      <li><code>.collapse.show</code> shows content</li>
+    </ul>
+    <p>You can use a link with the <code>href</code> attribute, or a button
+      with the <code>data-target</code> attribute. In both cases, the <code>data-toggle="collapse"</code>
+      is required.</p>
+  </div>
+  <div>
+    <h2>Summary<a href="http://getbootstrap.com/docs/4.0/extend/approach/#summary"></a></h2>
+    <p>We’ll dive into each of these more throughout, but at a high level,
+      here’s what guides our approach.</p>
+    <ul>
+      <li>Components should be responsive and mobile-first</li>
+      <li>Components should be built with a base class and extended via
+        modifier classes</li>
+      <li>Component states should obey a common z-index scale</li>
+      <li>Whenever possible, prefer a HTML and CSS implementation over
+        JavaScript</li>
+      <li>Whenever possible, use utilities over custom styles</li>
+      <li>Whenever possible, avoid enforcing strict HTML requirements (children
+        selectors)</li>
+    </ul>
+    <h2>Responsive<a href="http://getbootstrap.com/docs/4.0/extend/approach/#responsive"></a></h2>
+    <p>Bootstrap’s responsive styles are built to be responsive, an approach
+      that’s often referred to as <em>mobile-first</em>. We use this term in
+      our docs and largely agree with it, but at times it can be too broad.
+      While not every component <em>must</em> be entirely responsive in
+      Bootstrap, this responsive approach is about reducing CSS overrides by
+      pushing you to add styles as the viewport becomes larger.</p>
+    <p>Across Bootstrap, you’ll see this most clearly in our media queries. In
+      most cases, we use <code>min-width</code> queries that begin to apply at
+      a specific breakpoint and carry up through the higher breakpoints. For
+      example, a <code>.d-none</code>applies from <code>min-width: 0</code> to
+      infinity. On the other hand, a <code>.d-md-none</code> applies from the
+      medium breakpoint and up.</p>
+    <p>At times we’ll use <code>max-width</code> when a component’s inherent
+      complexity requires it. At times, these overrides are functionally and
+      mentally clearer to implement and support than rewriting core
+      functionality from our components. We strive to limit this approach, but
+      will use it from time to time.</p>
+    <h2>Classes<a href="http://getbootstrap.com/docs/4.0/extend/approach/#classes"></a></h2>
+    <p>Aside from our Reboot, a cross-browser normalization stylesheet, all our
+      styles aim to use classes as selectors. This means steering clear of type
+      selectors (e.g., <code>input[type="text"]</code>) and extraneous parent
+      classes (e.g., <code>.parent .child</code>) that make styles too specific
+      to easily override.</p>
+    <p>As such, components should be built with a base class that houses
+      common, not-to-be overridden property-value pairs. For example, <code>.btn</code>
+      and <code>.btn-primary</code>. We use <code>.btn</code> for all the
+      common styles like <code>display</code>, <code>padding</code>, and <code>border-width</code>.
+      We then use modifiers like <code>.btn-primary</code> to add the color,
+      background-color, border-color, etc.</p>
+    <p>Modifier classes should only be used when there are multiple properties
+      or values to be changed across multiple variants. Modifiers are not
+      always necessary, so be sure you’re actually saving lines of code and
+      preventing unnecessary overrides when creating them. Good examples of
+      modifiers are our theme color classes and size variants.</p>
+    <h2>z-index scales<a href="http://getbootstrap.com/docs/4.0/extend/approach/#z-index-scales"></a></h2>
+    <p>There are two <code>z-index</code> scales in Bootstrap—elements within a
+      component and overlay components.</p>
+    <h3>Component elements<a href="http://getbootstrap.com/docs/4.0/extend/approach/#component-elements"></a></h3>
+    <ul>
+      <li>Some components in Bootstrap are built with overlapping elements to
+        prevent double borders without modifying the <code>border</code>
+        property. For example, button groups, input groups, and pagination.</li>
+      <li>These components share a standard <code>z-index</code> scale of <code>0</code>
+        through <code>3</code>.</li>
+      <li><code>0</code> is default (initial), <code>1</code> is <code>:hover</code>,
+        <code>2</code> is <code>:active</code>/<code>.active</code>, and ,
+        <code>3</code> is <code>:focus</code>.</li>
+      <li>This approach matches our expectations of highest user priority. If
+        an element is focused, it’s in view and at the user’s attention. Active
+        elements are second highest because they indicate state. Hover is third
+        highest because it indicates user intent, but nearly <em>anything</em>
+        can be hovered.</li>
+    </ul>
+    <h3>Overlay components<a href="http://getbootstrap.com/docs/4.0/extend/approach/#overlay-components"></a></h3>
+    <p>Bootstrap includes several components that function as an overlay of
+      some kind. This includes, in order of highest <code>z-index</code>,
+      dropdowns, fixed and sticky navbars, modals, tooltips, and popovers.
+      These components have their own <code>z-index</code> scale that begins at
+      <code>1000</code>. This starting number is random and serves as a small
+      buffer between our styles and your project’s custom styles.</p>
+    <p>Each overlay component increases it’s <code>z-index</code> value
+      slightly in such a way that common UI principles allow user focused or
+      hovered elements to remain in view at all times. For example, a modal is
+      document blocking (e.g., you cannot take any other action save for the
+      modal’s action), so we put that above our navbars.</p>
+    <p>Learn more about this in our <a href="http://getbootstrap.com/docs/4.0/layout/overview/#z-index">z-index
+        layout page</a>.</p>
+    <h2>HTML and CSS over JS<a href="http://getbootstrap.com/docs/4.0/extend/approach/#html-and-css-over-js"></a></h2>
+    <p>Whenever possible, we prefer to write HTML and CSS over JavaScript. In
+      general, HTML and CSS are more prolific and accessible to more people of
+      all different experience levels. HTML and CSS are also faster in your
+      browser than JavaScript, and your browser general provides a great deal
+      of functionality for you.</p>
+    <p>This principle is our first-class JavaScript API is <code>data</code>
+      attributes. You don’t need to write nearly any JavaScript to use our
+      JavaScript plugins; instead, write HTML. Read more about this in <a href="http://getbootstrap.com/docs/4.0/extend/approach/">our
+        JavaScript overview page</a>.</p>
+    <p>Lastly, our styles build on the fundamental behaviors of common web
+      elements. Whenever possible, we prefer to use what the browser provides.
+      For example, you can put a <code>.btn</code> class on nearly any element,
+      but most elements don’t provide any semantic value or browser
+      functionality. So instead, we use <code>&lt;button&gt;</code>s and <code>&lt;a&gt;</code>s.</p>
+    <p>The same goes for more complex components. While we <em>could</em> write
+      our own form validation plugin to add classes to a parent element based
+      on an input’s state, thereby allowing us to style the text say red, we
+      prefer using the <code>:valid</code>/<code>:invalid</code>
+      pseudo-elements every browser provides us.</p>
+    <h2>Utilities<a href="http://getbootstrap.com/docs/4.0/extend/approach/#utilities"></a></h2>
+    <p>Utility classes—formerly helpers in Bootstrap 3—are a powerful ally in
+      combatting CSS bloat and poor page performance. A utility class is
+      typically a single, immutable property-value pairing expressed as a class
+      (e.g., <code>.d-block</code> represents <code>display: block;</code>).
+      Their primary appeal is speed of use while writing HTML and limiting the
+      amount of custom CSS you have to write.</p>
+    <p>Specifically regarding custom CSS, utilities can help combat increasing
+      file size by reducing your most commonly repeated property-value pairs
+      into single classes. This can have a dramatic effect at scale in your
+      projects.</p>
+    <h2>Flexible HTML<a href="http://getbootstrap.com/docs/4.0/extend/approach/#flexible-html"></a></h2>
+    <p>While not always possible, we strive to avoid being overly dogmatic in
+      our HTML requirements for components. Thus, we focus on single classes in
+      our CSS selectors and try to avoid immediate children selectors (<code>~</code>).
+      This gives you more flexibility in your implementation and helps keep our
+      CSS simpler and less specific.</p>
+  </div>
+</div>
 
+<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself
+  transformed in his bed into a horrible vermin. He lay on his armour-like
+  back, and if he lifted his head a little he could see his brown belly,
+  slightly domed and divided by arches
+  into stiff sections. The bedding was hardly able to cover
+  <strong>strong</strong> it and seemed ready to slide off any moment. His many
+  legs, pitifully thin compared with the size of the rest of him,
+  <a href="#">link</a> waved about helplessly as he
+  looked. "What's happened to me? " he thought. It wasn't a dream. His room, a
+  proper human room although a little too small, lay peacefully between its
+  four familiar walls.</p>
 
 <h1>One morning, when Gregor Samsa woke from troubled
   dreams.</h1>
 
+<h2>The bedding was hardly able to cover it.</h2>
+
+<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
+  raising a heavy fur muff that covered the whole of her lower arm towards the
+  viewer.
+</p>
 
 <h2>The bedding was hardly able to cover it.</h2>
 
-
-<p>It showed a lady fitted out with a fur hat and fur
-  boa who sat upright, raising a heavy fur muff that
-  covered the whole of her lower arm towards the
-  viewer.</p>
-
-
-<h2>The bedding was hardly able to cover it.</h2>
-
-
-<p>It showed a lady fitted out with a fur hat and fur
-  boa who sat upright, raising a heavy fur muff that
-  covered the whole of her lower arm towards the
-  viewer.</p>
-
+<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
+  raising a heavy fur muff that covered the whole of her lower arm towards the
+  viewer.
+</p>
 
 <ul>
   <li>Lorem ipsum dolor sit amet consectetuer.</li>
@@ -42,16 +538,13 @@
   <li>Aenean massa cum sociis natoque penatibus.</li>
 </ul>
 
-
-<p>It showed a lady fitted out with a fur hat and fur
-  boa who sat upright, raising a heavy fur muff that
-  covered the whole of her lower arm towards the
-  viewer.</p>
-
+<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
+  raising a heavy fur muff that covered the whole of her lower arm towards the
+  viewer.
+</p>
 
 <h3>A collection of textile samples lay spread out
   on the table.</h3>
-
 
 <h4>Samsa was a travelling salesman.</h4>
 
@@ -59,51 +552,41 @@
 <h5>Donec pede justo fringilla vel aliquet nec
   vulputate eget arcu</h5>
 
-
 <h6>In enim justo rhoncus ut imperdiet a venenatis
   vitae justo</h6>
-
 
 <form action="#" method="post">
   <fieldset>
     <label for="name">Name:</label>
-    <input type="text" id="name" placeholder="Enter your 
-  full name" />
+    <input placeholder="Enter your full name">
 
     <label for="email">Email:</label>
-    <input type="email" id="email" placeholder="Enter 
-  your email address" />
+    <input type="email" placeholder="Enter your email address">
 
     <label for="message">Message:</label>
-    <textarea id="message" placeholder="What's on your 
-  mind?"></textarea>
+    <textarea placeholder="What's on your mind?"></textarea>
 
-    <input type="submit" value="Send message" />
+    <input type="submit" value="Send message">
 
   </fieldset>
 </form>
 
-
-<p>It showed a lady fitted out with a fur hat and fur
-  boa who sat upright, raising a heavy fur muff that
-  covered the whole of her lower arm towards the
-  viewer.</p>
-
+<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
+  raising a heavy fur muff that covered the whole of her lower arm towards the
+  viewer.
+</p>
 
 <blockquote>
-  Gregor then turned to look out the window at the dull
-  weather. Drops of rain could be heard hitting the pane,
-  which made him feel quite sad. "How about if I sleep a
-  little bit longer and forget all this nonsense", he
-  thought, but that was something he was unable to do
-  because he was used to sleeping on his right, and in
-  his present state couldn't get into that position.
-  However hard he threw himself onto his right, he
-  always rolled back to where he was.
+  Gregor then turned to look out the window at the dull weather. Drops of rain
+  could be heard hitting the pane, which made him feel quite sad. "How about if
+  I sleep a little bit longer and forget all this nonsense", he thought, but
+  that was something he
+  was unable to do because he was used to sleeping on his right, and in his
+  present state couldn't get into that position. However hard he threw himself
+  onto his right, he always rolled back to where he was.
 </blockquote>
 
-
-<table class="data">
+<table>
   <tr>
     <th>Entry Header 1</th>
     <th>Entry Header 2</th>
@@ -130,91 +613,58 @@
   </tr>
 </table>
 
-
-<p>It showed a lady fitted out with a fur hat and fur
-  boa who sat upright, raising a heavy fur muff that
-  covered the whole of her lower arm towards the
-  viewer.</p>
-
+<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
+  raising a heavy fur muff that covered the whole of her lower arm towards the
+  viewer.
+</p>
 
 <ul>
-  <li>Lorem ipsum dolor sit amet, consectetuer adipiscing
-    elit. Aenean commodo ligula eget dolor. Aenean
-    massa.</li>
-  <li>Cum sociis natoque penatibus et magnis dis
-    parturient montes, nascetur ridiculus mus. Donec quam
-    felis, ultricies nec, pellentesque eu, pretium quis,
-    sem.</li>
-  <li>Nulla consequat massa quis enim. Donec pede justo,
-    fringilla vel, aliquet nec, vulputate eget, arcu.</li>
-  <li>In enim justo, rhoncus ut, imperdiet a, venenatis
-    vitae, justo. Nullam dictum felis eu pede mollis
-    pretium. Integer tincidunt.</li>
+  <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+    ligula eget dolor. Aenean massa.
+  </li>
+  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+    ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+    quis, sem.
+  </li>
+  <li>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
+    nec, vulputate eget, arcu.</li>
+  <li>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+    dictum felis eu pede mollis pretium. Integer tincidunt.</li>
 </ul>
 
-
 <p><a href="http://basscss.com/v7/docs/">http://basscss.com/v7/docs/</a></p>
-
-<p><a href="http://basscss.com/v7/docs/base-tables/">http://basscss.com/v7/docs/base-tables/</a></p>
 
 <div>
   <form>
     <label for="search">Search</label>
-    <input id="search" type="text" class="field">
-    <button class="btn btn-primary">Go</button>
+    <input>
+    <button>Go</button>
   </form>
 </div>
-  
+
+<p>Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet mignon
+  shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank
+  tongue pig drumstick capicola swine short loin ham hock kevin.
+</p>
 
 
-    <div class="right sm-col-6 md-col-4 p2 border">.sm-col-6.md-col-4</div>
-    <p>Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet
-      mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage
-      kielbasa flank tongue pig drumstick capicola swine short loin ham hock
-      kevin.</p>
-
-
-
-<div class="mxn1">
-  <a href="#!" class="btn button-narrow">Burgers</a>
-  <a href="#!" class="btn button-narrow">Fries</a>
-  <a href="#!" class="btn button-narrow">Shakes</a>
-  <a href="#!" class="btn button-narrow">Onion Rings</a>
-</div>
-<div class="flex flex-wrap">
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-  <div class="p1 border">Hamburger</div>
-</div>
-<p><a href="http://basscss.com/v7/docs/flex-object/">http://basscss.com/v7/docs/flex-object/</a></p>
-
-<form class="sm-col-6">
+<form>
   <label>Email Address</label>
-  <input type="text" class="block col-12 mb1 field">
+  <input>
   <label>Password</label>
-  <input type="password" class="block col-12 mb1 field">
+  <input type="password">
   <label>Select</label>
-  <select class="block col-12 mb1 field">
+  <select>
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
     <option>Option 4</option>
     <option>Option 5</option>
   </select>
-  <label class="block col-12 mb2">
-    <input type="checkbox" checked>
+  <label>
+    <input type="checkbox" checked="checked">
     Remember me
   </label>
-  <button type="submit" class="btn btn-primary">Sign In</button>
-  <button type="reset" class="btn btn-primary black bg-gray">Cancel</button>
+  <button type="submit">Sign In</button>
+  <button type="reset">Cancel</button>
 </form>
-
