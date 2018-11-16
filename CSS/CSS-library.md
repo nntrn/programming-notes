@@ -17,6 +17,7 @@ html {
 <details open><summary>TABLE OF CONTENTS</summary>
 
 * [guidelines](#guidelines)
+  * [skeleton](#skeleton)
   * [titling](#titling)
   * [Anatomy of a Ruleset](#anatomy-of-a-ruleset)
   * [Indenting](#indenting)
@@ -81,6 +82,27 @@ sites i love
 ---
 
 ## guidelines
+
+### skeleton
+
+```CSS
+/* TaCble of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Grid
+- Base Styles
+- Typography
+- Links
+- Buttons
+- Forms
+- Lists
+- Code
+- Tables
+- Spacing
+- Utilities
+- Clearing
+- Media Queries
+*/
+```
 
 ```CSS
 **

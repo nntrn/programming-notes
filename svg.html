@@ -1,0 +1,734 @@
+<!DOCTYPE html><html><head>
+      <title>svg</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+	* color edited by @nntrn
+ */
+	code[class*="language-"],
+	pre[class*="language-"] {
+	  color: #333;
+	  background: none;
+	  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+	  text-align: left;
+	  white-space: pre;
+	  word-spacing: normal;
+	  word-break: normal;
+	  word-wrap: normal;
+	  line-height: 1.4;
+	  -moz-tab-size: 8;
+	  -o-tab-size: 8;
+	  tab-size: 8;
+	  -webkit-hyphens: none;
+	  -moz-hyphens: none;
+	  -ms-hyphens: none;
+	  hyphens: none;
+	}
+
+	/* Code blocks */
+	pre[class*="language-"] {
+	  padding: .8em;
+	  overflow: auto;
+	  /* border: 1px solid #ddd; */
+	  border-radius: 3px;
+	  /* background: #fff; */
+	  background: #f5f5f5;
+	}
+
+	/* Inline code */
+	:not(pre)>code[class*="language-"] {
+	  padding: .1em;
+	  border-radius: .3em;
+	  white-space: normal;
+	  background: #f5f5f5;
+	}
+
+	.token.comment,
+	.token.blockquote {
+	  color: #969896;
+	}
+
+	.token.cdata {
+	  color: #183691;
+	}
+
+	.token.doctype,
+	.token.punctuation,
+	.token.variable,
+	.token.macro.property {
+	  color: #333;
+	}
+
+	.token.operator,
+	.token.important,
+	.token.keyword,
+	.token.rule,
+	.token.builtin {
+	  color: #2d4dff;
+	}
+
+	.token.string,
+	.token.url,
+	.token.regex,
+	.token.attr-value {
+	  color: #032f62;
+	}
+
+	.token.property,
+	.token.number,
+	.token.boolean,
+	.token.entity,
+	.token.atrule,
+	.token.constant,
+	.token.symbol,
+	.token.command,
+	.token.code {
+	  color: #183691;
+	}
+
+	.token.tag,
+	.token.selector,
+	.token.prolog {
+	  color: #444;
+	}
+
+	.token.function,
+	.token.namespace,
+	.token.pseudo-element,
+	.token.class,
+	.token.class-name,
+	.token.pseudo-class,
+	.token.id,
+	.token.url-reference .token.variable,
+	.token.attr-name {
+	  color: #d60012;
+	}
+
+	.token.entity {
+	  cursor: help;
+	}
+
+	.token.title,
+	.token.title .token.punctuation {
+	  font-weight: bold;
+	  color: #032f62;
+	}
+
+	.token.list {
+	  color: #e36209;
+	}
+
+	.token.inserted {
+	  background-color: #f0fff4;
+	  color: #22863a;
+	}
+
+	.token.deleted {
+	  background-color: #ffeef0;
+	  color: #b31d28;
+	}
+
+	.token.bold {
+	  font-weight: bold;
+	}
+
+	.token.italic {
+	  font-style: italic;
+	}
+
+	/* JSON */
+	.language-json .token.property {
+	  color: #183691;
+	}
+
+	.language-markup .token.tag .token.punctuation {
+	  color: #333;
+	}
+
+	/* CSS */
+	code.language-css,
+	.language-css .token.function {
+	  color: #15700b;
+	}
+
+	/* YAML */
+	.language-yaml .token.atrule {
+	  color: #63a35c;
+	}
+
+	code.language-yaml {
+	  color: #183691;
+	}
+
+	/* Ruby */
+	.language-ruby .token.function {
+	  color: #333;
+	}
+
+	/* Markdown */
+	.language-markdown .token.url {
+	  color: #6f42c1;
+	}
+
+	/* Makefile */
+	.language-makefile .token.symbol {
+	  color: #6f42c1;
+	}
+
+	.language-makefile .token.variable {
+	  color: #183691;
+	}
+
+	.language-makefile .token.builtin {
+	  color: #0086b3;
+	}
+
+	/* Bash */
+	.language-bash .token.keyword {
+	  color: #0086b3;
+	}
+html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}
+/*
+html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}
+*/
+html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+* {
+  outline: 0;
+  box-sizing: border-box;
+}
+.custom-TOC {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 26%;
+  max-width: 200px;
+  height: 93%;
+  font-size: .85rem;
+  overflow: scroll;
+  line-height: 110%;
+  margin: 3%;
+}
+.markdown-preview.markdown-preview {
+  /**
+  * blockquote css
+  * @author by Tania Rasci
+  ********************************************* */
+}
+.markdown-preview.markdown-preview body {
+  font-family: -apple-system, Helvetica, Roboto, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
+  padding: 0 26px;
+  word-wrap: break-word;
+}
+.markdown-preview.markdown-preview img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.markdown-preview.markdown-preview a {
+  color: #0046ce;
+  text-decoration: none;
+  line-height: inherit;
+}
+.markdown-preview.markdown-preview a:active,
+.markdown-preview.markdown-preview a:focus,
+.markdown-preview.markdown-preview a:hover {
+  color: #3f80ff;
+  text-decoration: underline;
+}
+.markdown-preview.markdown-preview a:focus,
+.markdown-preview.markdown-preview input:focus,
+.markdown-preview.markdown-preview select:focus,
+.markdown-preview.markdown-preview textarea:focus {
+  outline-offset: -1px;
+  line-height: 110%;
+}
+.markdown-preview.markdown-preview hr {
+  background: none;
+  height: 1em;
+}
+.markdown-preview.markdown-preview h1 {
+  padding-bottom: 0.3rem;
+  line-height: 1.2;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+.markdown-preview.markdown-preview h1,
+.markdown-preview.markdown-preview h3,
+.markdown-preview.markdown-preview h5 {
+  font-weight: normal;
+}
+.markdown-preview.markdown-preview h1 code,
+.markdown-preview.markdown-preview h2 code,
+.markdown-preview.markdown-preview h3 code,
+.markdown-preview.markdown-preview h4 code,
+.markdown-preview.markdown-preview h5 code,
+.markdown-preview.markdown-preview h6 code {
+  font-size: inherit;
+  line-height: auto;
+}
+.markdown-preview.markdown-preview ul {
+  line-height: 120%;
+}
+.markdown-preview.markdown-preview li {
+  line-height: inherit;
+  padding: 1.2% 0;
+}
+.markdown-preview.markdown-preview table {
+  border-collapse: collapse;
+}
+.markdown-preview.markdown-preview table > thead > tr > th {
+  text-align: left;
+  border-bottom: 1px solid;
+}
+.markdown-preview.markdown-preview table > thead > tr > th,
+.markdown-preview.markdown-preview table > thead > tr > td,
+.markdown-preview.markdown-preview table > tbody > tr > th,
+.markdown-preview.markdown-preview table > tbody > tr > td {
+  padding: 5px 10px;
+}
+.markdown-preview.markdown-preview table > tbody > tr + tr > td {
+  border-top: 1px solid;
+}
+.markdown-preview.markdown-preview mark {
+  background: #f8ea83;
+}
+.markdown-preview.markdown-preview mark code {
+  font-size: .9rem;
+  padding: 0px;
+  border-radius: 0px;
+  background: white;
+  box-shadow: inset 1px 1px #f8ea83, inset -1px -2px #f8ea83;
+}
+.markdown-preview.markdown-preview code {
+  font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+  font-size: inherit;
+}
+.markdown-preview.markdown-preview body.wordWrap pre {
+  white-space: pre-wrap;
+  word-break: keep-all !important;
+}
+.markdown-preview.markdown-preview pre {
+  position: relative;
+}
+.markdown-preview.markdown-preview pre:before {
+  content: attr(data-info);
+  display: table;
+  background: #2c3e50;
+  color: #fff;
+  float: right;
+  font-size: .65em;
+  border-radius: 1px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-transform: uppercase;
+  padding: 2px 4px !important;
+}
+.markdown-preview.markdown-preview blockquote p {
+  padding: 0;
+  letter-spacing: unset;
+}
+.markdown-preview.markdown-preview blockquote p:last-of-type {
+  margin-bottom: 0;
+}
+.markdown-preview.markdown-preview blockquote {
+  color: #404040;
+  border-left: 8px solid #f0f0f0;
+  font-weight: 400;
+  margin: 2rem 0;
+  padding-left: 1rem;
+  line-height: 1.3;
+  font-size: .9rem;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+  padding: 1.2rem;
+}
+.markdown-preview.markdown-preview blockquote code {
+  margin: 0px;
+  padding: 0px;
+  font-family: Menlo, Consolas, "Liberation Mono", Courier, monospace;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  color: #3d70b2;
+  font-weight: bold;
+}
+.markdown-preview.markdown-preview blockquote pre {
+  margin: 10px 0px;
+  background: rgba(255, 255, 255, 0.9);
+  background: rgba(240, 241, 244, 0.6);
+  border-radius: 0px;
+}
+.markdown-preview.markdown-preview code[class*="language-"],
+.markdown-preview.markdown-preview pre[class*="language-"] {
+  font-family: Menlo, Consolas, "Liberation Mono", Courier, monospace;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  line-height: 1.3;
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+}
+.markdown-preview.markdown-preview dl {
+  line-height: 120%;
+  background: #fff;
+  margin: 2% auto;
+  width: 90%;
+}
+.markdown-preview.markdown-preview dt {
+  font-style: normal;
+  background: white;
+}
+.markdown-preview.markdown-preview dd {
+  border-left: 6px solid #edeff1;
+  margin: 2% .5%;
+}
+.markdown-preview.markdown-preview dd code {
+  background: #fff;
+  padding: 0px;
+  border: 0px solid #edeff1;
+}
+.markdown-preview.markdown-preview blockquote.alert {
+  background: #ffd9e0;
+  border-left: 12px solid #ff4a6e;
+}
+.markdown-preview.markdown-preview blockquote.info {
+  background: #fff6d5;
+  border-left: 12px solid #f0d461;
+}
+.markdown-preview.markdown-preview blockquote.success {
+  background: #86e29b;
+  border-left: 12px solid #28a745;
+}
+.markdown-preview.markdown-preview blockquote.note {
+  background: #f0f0f0;
+  border-left: 12px solid #ccc;
+}
+.markdown-preview.markdown-preview blockquote.details {
+  background: #e7efff;
+  border-left: 12px solid #a5c3ff;
+}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <style>
+
+* .reset, .reset > *{
+  all: unset;
+}
+
+.i, .inline{
+  background: none; 
+  color: #000;
+  font-size:inherit!important;
+  padding:0;
+  margin:0;
+}
+</style>
+<h1 class="mume-header" id="svg">svg</h1>
+
+<p>this is a compilation of notes taken (either directly or indirectly) from Sarah Drasner</p>
+<blockquote>
+<p><strong>Workshop: Advanced SVG Animations</strong><br>
+<a href="https://codepen.io/collection/XvBQJQ/">CodePen Collection</a> | <a href="https://github.com/sdras/frontendmasters-svganimation">GitHub</a></p>
+<p>Slides (3 parts):<br>
+<a href="http://slides.com/sdrasner/frontendmasters1#/">http://slides.com/sdrasner/frontendmasters1#/</a><br>
+<a href="http://slides.com/sdrasner/frontendmasters2">http://slides.com/sdrasner/frontendmasters2</a><br>
+<a href="http://slides.com/sdrasner/frontendmasters3#/">http://slides.com/sdrasner/frontendmasters3#/</a></p>
+</blockquote>
+<ul>
+<li><a href="https://jakearchibald.github.io/svgomg/">SVGOMG</a></li>
+<li><a href="http://petercollingridge.appspot.com/svg-editor">Peter Collingridge&#x2019;s SVG Editor</a></li>
+<li><a href="https://github.com/svg/svgo">SVGO</a> / <a href="https://github.com/svg/svgo-gui">SVGO-GUI</a></li>
+<li><a href="https://www.svgrepo.com/vectors/html/">svgrepo</a></li>
+</ul>
+<hr>
+<h2 class="mume-header" id="preserveaspectratio">PreserveAspectRatio</h2>
+
+<dl>
+<dt>cx and cy</dt>
+<dd>is the center point of the <strong>x-axis</strong> and <strong>y-axis</strong></dd>
+<dt>rx and ry</dt>
+<dd>radius points</dd>
+</dl>
+<p><strong>Default</strong>:<br>
+<code class="reset">preserveAspectRatio=&#x201C;xMidYMid meet&#x201D;</code></p>
+<blockquote>
+<p>uniformly scales, like <em>background-size: cover;</em></p>
+<p>align the __ of the element&#x2019;s viewBox with the ___ value of the viewport<br>
+<strong>takes 3 parameters:</strong></p>
+<ul>
+<li><code>X___</code> (min, mid, max)</li>
+<li><code>Y___</code> (min, mid, max)</li>
+<li><code>meet</code> or <code>slice</code></li>
+</ul>
+<p><code>none</code> will scale to container</p>
+</blockquote>
+<dl>
+<dt>Meet (default)</dt>
+<dd>entire <em>viewBox</em> is <strong>visible</strong> within viewport<br>
+the viewbox is scaled <strong>up</strong> as much as possible, meeting other critieria<br>
+<code>viewBox &lt; viewport</code></dd>
+</dl>
+<details><summary>expand</summary>
+<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1867404/Screen_Shot_2015-10-23_at_4.57.11_AM.png">
+</details>
+<dl>
+<dt>Slice</dt>
+<dd>entire <em>viewport</em> is <strong>covered</strong> within viewBox<br>
+the viewBox is scaled <strong>down</strong> as much as possible, meeting other critieria<br>
+<code>viewBox &gt; viewport</code></dd>
+</dl>
+<details><summary>expand</summary>
+<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1867407/Screen_Shot_2015-10-23_at_4.57.23_AM.png" "="">
+</details>
+<h2 class="mume-header" id="paths">paths</h2>
+
+<p>capital letters are <code>absolute</code> data and lowercase is relative</p>
+<h3 class="mume-header" id="data">data</h3>
+
+<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1790156/path-table1.jpg">
+<h3 class="mume-header" id="curve-commands">curve commands</h3>
+
+<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1790146/path-table.jpg">
+<h2 class="mume-header" id="animating-with-css">Animating with CSS</h2>
+
+<p>Target the element, expand the viewBox,<br>
+use fill, and remove the fill from the markup.</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>200px<span class="token punctuation">&quot;</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>70px<span class="token punctuation">&quot;</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>0 0 200 70<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ball3<span class="token punctuation">&quot;</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>45<span class="token punctuation">&quot;</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>45<span class="token punctuation">&quot;</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>25<span class="token punctuation">&quot;</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span>
+</pre><pre data-role="codeBlock" data-info="CSS" class="language-css"><span class="token atrule"><span class="token rule">@keyframes</span> second-animation</span> <span class="token punctuation">{</span>
+   <span class="token selector">0% </span><span class="token punctuation">{</span>
+    <span class="token property">fill</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateX</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+   <span class="token selector">50% </span><span class="token punctuation">{</span>
+    <span class="token property">fill</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateX</span><span class="token punctuation">(</span><span class="token number">50</span>px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+   <span class="token selector">100% </span><span class="token punctuation">{</span>
+    <span class="token property">fill</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateX</span><span class="token punctuation">(</span><span class="token number">100</span>px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><pre data-role="codeBlock" data-info="SHORTHAND" class="language-shorthand"><code>.ball {
+  animation: animation-name-you-pick 2s 2s 3 alternate ease-in-out forwards;
+}
+</code></pre><blockquote>
+<p><strong>Exercise 1:</strong><br>
+Make a simple SVG with 4+ attributes, optimize it, and animate at least two elements.</p>
+<ul>
+<li>Illustrator</li>
+<li>Sketch</li>
+<li>Inkscape</li>
+<li>Draw SVG</li>
+<li>Vectr</li>
+</ul>
+</blockquote>
+<p><a href="http://www.grunticon.com/">http://www.grunticon.com/</a></p>
+<pre data-role="codeBlock" data-info="css" class="language-css"><span class="token selector"><span class="token class">.fore</span> </span><span class="token punctuation">{</span>
+<span class="token property">background</span><span class="token punctuation">:</span> <span class="token url">url(&#x2018;fore.svg&#x2019;)</span><span class="token punctuation">;</span>
+<span class="token property">animation</span><span class="token punctuation">:</span> bk <span class="token number">7</span>s -<span class="token number">5</span>s linear infinite<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.mid</span> </span><span class="token punctuation">{</span>
+<span class="token property">background</span><span class="token punctuation">:</span> <span class="token url">url(&#x2018;mid.svg&#x2019;)</span><span class="token punctuation">;</span>
+<span class="token property">animation</span><span class="token punctuation">:</span> bk <span class="token number">15</span>s -<span class="token number">5</span>s linear infinite<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.bk</span> </span><span class="token punctuation">{</span>
+<span class="token property">background</span><span class="token punctuation">:</span> <span class="token url">url(&#x2018;bkwalk2.svg&#x2019;)</span><span class="token punctuation">;</span>
+<span class="token property">animation</span><span class="token punctuation">:</span> bk <span class="token number">20</span>s -<span class="token number">5</span>s linear infinite<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@keyframes</span> bk</span> <span class="token punctuation">{</span>
+<span class="token selector">100% </span><span class="token punctuation">{</span> <span class="token property">background-position</span><span class="token punctuation">:</span> <span class="token number">200%</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><ul>
+<li>time at <code>-5s</code> is so that the background is rolling by the time the user lands on the page</li>
+</ul>
+<hr>
+<details>
+<h1>storytelling-js</h1>
+<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>Surprise with technique<br>
+SVG Filters</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">tl<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>addAttr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+tl<span class="token punctuation">.</span><span class="token function">fromTo</span><span class="token punctuation">(</span>feTurb<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  attr<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    baseFrequency<span class="token punctuation">:</span> <span class="token string">&apos;0 0&apos;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  attr<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    baseFrequency<span class="token punctuation">:</span> <span class="token string">&apos;0.8 1.2&apos;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  ease<span class="token punctuation">:</span> Sine<span class="token punctuation">.</span>easeOut
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tl<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>feTurb<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  attr<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    baseFrequency<span class="token punctuation">:</span> <span class="token string">&apos;0 0&apos;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  ease<span class="token punctuation">:</span> Sine<span class="token punctuation">.</span>easeIn
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tl<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>removeAttr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// filter attribute helpers</span>
+<span class="token keyword">function</span> <span class="token function">addAttr</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  feTurb<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">&apos;baseFrequency&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;0 0&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">removeAttr</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> applyFilter <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;applyFilter&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  applyFilter<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;filter&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Entrances and Exits must be consistent. Entrances start from a 90% scale so as not to be too jarring for the user.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p><strong>The cubic bezier for entrance is:</strong><br>
+cubic-bezier(0.39, 0.575, 0.565, 1);</p>
+<p><strong>The cubic bezier for exit is:</strong><br>
+cubic-bezier(0.47, 0, 0.745, 0.715);</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">Math<span class="token punctuation">.</span><span class="token function-variable function">easeOutSine</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>t<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> c <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>t<span class="token operator">/</span>d <span class="token operator">*</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+          
+Math<span class="token punctuation">.</span><span class="token function-variable function">easeInSine</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>t<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token operator">-</span>c <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>t<span class="token operator">/</span>d <span class="token operator">*</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> c <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></details>
+<ul>
+<li><code>xml:space</code> is used to handle whitespace only text nodes. The white space comes from whitespace characters, such as tabs, line breaks, or carriage returns, which are located between tags to provide formatting.</li>
+<li>Removing the  preserve value is equivalent to changing it to default, which either collapses or replaces the whitespace characters depending on the XML processor. There is a related question with a more detailed explanation<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></li>
+</ul>
+<p>EXCERCISE 2</p>
+<pre data-role="codeBlock" data-info="CSS" class="language-css"><span class="token selector">//mid and mid-sm are the same
+<span class="token id">#back</span> </span><span class="token punctuation">{</span>
+    <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0.8</span><span class="token punctuation">;</span>
+    <span class="token property">animation</span><span class="token punctuation">:</span> bkmove <span class="token number">70</span>s linear infinite<span class="token punctuation">;</span>
+    <span class="token property">animation-iteration-count</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token id">#teal</span> </span><span class="token punctuation">{</span>
+ <span class="token property">animation</span><span class="token punctuation">:</span> hover <span class="token number">2</span>s ease-in-out infinite both<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token id">#tshadow</span> </span><span class="token punctuation">{</span>
+  <span class="token property">animation</span><span class="token punctuation">:</span> shadowhover <span class="token number">2</span>s ease-in-out infinite both<span class="token punctuation">;</span>
+  <span class="token property">transform-origin</span><span class="token punctuation">:</span> <span class="token number">50%</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token id">#purple</span> </span><span class="token punctuation">{</span>
+ <span class="token property">animation</span><span class="token punctuation">:</span> hover <span class="token number">2</span>s -<span class="token number">0.5</span>s ease-in-out infinite both<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">//same shadow
+
+<span class="token id">#heart</span> </span><span class="token punctuation">{</span>
+    <span class="token property">animation</span><span class="token punctuation">:</span> heartpop <span class="token number">2</span>s <span class="token number">1.25</span>s ease-out both<span class="token punctuation">;</span>
+    <span class="token property">transform-origin</span><span class="token punctuation">:</span> <span class="token number">50%</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">-moz-transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //firefox transform-origin svg bug hack
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*had to split the heart animation in two due to a bad safari 
+svg bug that doesn&apos;t allow for opacity and transform*/</span>
+<span class="token selector"><span class="token id">#heartopacity</span> </span><span class="token punctuation">{</span>
+    <span class="token property">animation</span><span class="token punctuation">:</span> heartopacity <span class="token number">1.5</span>s <span class="token number">1</span>s ease-out both<span class="token punctuation">;</span>
+    <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token id">#floaty</span> </span><span class="token punctuation">{</span>
+  <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0.2</span><span class="token punctuation">;</span>
+  <span class="token property">animation</span><span class="token punctuation">:</span> floataround <span class="token number">3</span>s ease-in-out infinite both<span class="token punctuation">;</span>
+  <span class="token property">transform-origin</span><span class="token punctuation">:</span> <span class="token number">50%</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+  <span class="token property">animation-iteration-count</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@keyframes</span> bkmove</span> <span class="token punctuation">{</span>
+    <span class="token selector">100% </span><span class="token punctuation">{</span>
+        <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateX</span><span class="token punctuation">(</span>-<span class="token number">1600</span>px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@keyframes</span> heartopacity</span> <span class="token punctuation">{</span>
+    <span class="token selector">50% </span><span class="token punctuation">{</span>
+        <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0.9</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token selector">90% </span><span class="token punctuation">{</span>
+        <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0.2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token selector">100% </span><span class="token punctuation">{</span>
+        <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@keyframes</span> heartpop</span> <span class="token punctuation">{</span>
+    <span class="token selector">50% </span><span class="token punctuation">{</span>
+        <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token property">-moz-transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token selector">90% </span><span class="token punctuation">{</span>
+        <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token property">-moz-transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token selector">100% </span><span class="token punctuation">{</span>
+        <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token property">-moz-transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p data-height="484" data-theme-id="light" data-slug-hash="iEGbI" data-default-tab="html,result" data-user="sdras" data-pen-title="Benchmarking SVG Animation - CSS hardware accelerated" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/iEGbI/">Benchmarking SVG Animation - CSS hardware accelerated</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p data-height="265" data-theme-id="0" data-slug-hash="azERrp" data-default-tab="css,result" data-user="giuliacardieri" data-embed-version="2" data-pen-title="Balloonpalooza!" class="codepen">
+<script async src="balloons.js"></script>
+</p><hr>
+<details>
+<summary>Fluid motion is not just the way things move but how things move. 
+</summary>
+<p>A beautiful animation can become unsuccessful when there are unnecessary repaints and elements are not properly hardware accelerated. This involves thinking about the element itself along with the way we animate it. Animations should be performed with transforms and opacity where possible. Animated elements must be hardware accelerated (see the docs for our .accelerate class).</p>
+<p>Mobile web pages should specify initial-scale=1.0 in the meta tag so that the device is not waiting the required 300MS on the secondary tap before calling action. Interaction for touch events must either start from a larger touch-target (40px x 40px or greater) or use @media(pointer:coarse) when support increases.</p>
+<p>SVG should be used in place of jpg, png, or gif for animated elements due to their small filesize when properly designed for performance. The exception to this rule being an element that has to grow many scales higher than its original state, which is a poor use case for SVG due to the cost of that rerender. SVG must be properly optimized with tools like SVGOMG, SVGO, or Peter Coolinridge&#x2019;s SVG Editor.</p>
+</details>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="http://slides.com/sdrasner/storytelling-js#/">http://slides.com/sdrasner/storytelling-js#/</a> <a href="#fnref1" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://codepen.io/sdras/pen/JbaGwg">Example Motion Design Docs</a> <a href="#fnref2" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a href="https://stackoverflow.com/questions/11493057/svg-xmlspace-attribute-issue">SVG xml:space attribute issue</a> <a href="#fnref3" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
