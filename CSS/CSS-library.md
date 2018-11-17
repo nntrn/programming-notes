@@ -1,15 +1,5 @@
 # CSS Library
 
-<style>
-
-*{outline:0}
-.show-example{margin:1em 0; }
-
-html {
-  font-size: 100%;
-}
-</style>
-
 <link rel="stylesheet" href="../resources/custom-toc-panel.css">
 
 <div class="custom-TOC">
@@ -77,7 +67,7 @@ sites i love
 * [css-protips](https://github.com/AllThingsSmitty/css-protips)
 * [53 css techniques](https://www.smashingmagazine.com/2007/01/53-css-techniques-you-couldnt-live-without/)
 * [awesome list](https://github.com/sindresorhus/awesome/)
-* [svg url encoder](http://yoksel.github.io/url-encoder/) ==**==
+* [svg url encoder](http://yoksel.github.io/url-encoder/) **
 
 ---
 
@@ -86,7 +76,7 @@ sites i love
 ### skeleton
 
 ```CSS
-/* TaCble of contents
+/* Table of contents
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 - Grid
 - Base Styles

@@ -1,15 +1,9 @@
+# CSS NOTES 
 
-# bookmarks
+TODO: 
+**organize sources!!!!!** MOST IF NOT ALL OF THESE WERE COPIED AND PASTED from listed sites referenced somewherebelow
 
-* [bookmarks](#bookmarks)
-  * [animations](#animations)
-    * [animation timing function](#animation-timing-function)
-  * [gradient](#gradient)
-    * [Gradient Diagonal Stripes](#gradient-diagonal-stripes)
-  * [LESS](#less)
-  * [random](#random)
-    * [em vs rem vs px](#em-vs-rem-vs-px)
-    * [@font-face](#font-face)
+---
 
 ## animations
 
@@ -119,7 +113,7 @@ background:
 **Using JavaScript**
 LESS comes with a `less.js` file which is really easy to deploy in your website. Create a stylesheet with `.less` extension and link it in your document using the `rel="stylesheet/less"` attribute.
 
-> You are all set and can compose styles within the .less. The LESS syntax will be compiled on the fly as the page loads. ==Keep in mind that using JavaScript is discouraged at the production stage as it will badly affect the website performance==
+> You are all set and can compose styles within the .less. The LESS syntax will be compiled on the fly as the page loads. <mark>Keep in mind that using JavaScript is discouraged at the production stage as it will badly affect the website performance</mark>
 
 ```HTML
 <link rel="stylesheet/less" type="text/css" href="main.less" />
@@ -171,27 +165,29 @@ small { font-size: 13px; }
 }
 ```
 
-There’s only one `em` value to overwrite in the media query, ==because `em` inherits and scales relative to its parent (html in this case) font size==, similar to the way vector paths scale proportionally.
+There’s only one `em` value to overwrite in the media query, <mark>because `em` inherits and scales relative to its parent (html in this case) font size</mark>, similar to the way vector paths scale proportionally.
 
-REM as in Root EM
+### REM as in Root EM
 
-* While `em` is relative to the font size of its direct or nearest parent, 
+* `em` is relative to the font size of its direct or nearest parent
+  * **note**: `ul {font-size: 1.2em}` in a nested list would make the font grow for each nested lists `ul li ul li`
 * `rem` is only relative to the html (root) font-size. 
 
 I like to think of it as a reset. If a style sheet is built in a modular fashion, then `rem` shouldn’t be needed very often, but it can be handy at times.
 
-For example, if you’re trying to achieve consistent spacing without extra markup, rem can be used to define the padding and margins.
+For example, if you’re trying to achieve consistent spacing without extra markup, `rem` can be used to define the padding and margins.
 
 `px` can be used for consistent padding and margins too, but it doesn’t scale across media queries like `em` and `rem`.
 
 **Conclusion**
-I use em for nearly everything, rem occasionally for padding or margins, but only in a pinch, and px some times for borders.
+> I use `em` for nearly everything, rem occasionally for padding or margins, but only in a pinch, and `px` some times for borders.
+>
+> For the most part, I want children to inherit size. If a sidebar is going to be a smaller font size, then I expect all its children to resize proportionally without having to calculate and redefine individual selectors.
+>
+> I struggle to think of a good reason to use `rem` for font-size values, but I’m sure there are exceptions. If I’m trying to reset a font size with `rem`, it’s probably a sign my CSS is not very modular and due for a refactor
+>
+> [source](https://j.eremy.net/confused-about-rem-and-em/)
 
-For the most part, I want children to inherit size. If a sidebar is going to be a smaller font size, then I expect all its children to resize proportionally without having to calculate and redefine individual selectors.
-
-I struggle to think of a good reason to use rem for font-size values, but I’m sure there are exceptions. If I’m trying to reset a font size with rem, it’s probably a sign my CSS is not very modular and due for a refactor
-
-[source](https://j.eremy.net/confused-about-rem-and-em/)
 
 ### @font-face
 
@@ -220,3 +216,16 @@ I struggle to think of a good reason to use rem for font-size values, but I’m 
         url('myfont.woff') format('woff');
 }
 ```
+
+## references
+
+* [animations](#animations)
+  * [animation timing function](#animation-timing-function)
+* [gradient](#gradient)
+  * [Gradient Diagonal Stripes](#gradient-diagonal-stripes)
+* [LESS](#less)
+* [random](#random)
+  * [em vs rem vs px](#em-vs-rem-vs-px)
+  * [REM as in Root EM](#rem-as-in-root-em)
+  * [@font-face](#font-face)
+* [references](#references)

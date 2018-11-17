@@ -1,37 +1,22 @@
-<style>
-
-* .reset, .reset > *{
-  all: unset;
-}
-
-.i, .inline{
-  background: none; 
-  color: #000;
-  font-size:inherit!important;
-  padding:0;
-  margin:0;
-}
-</style>
-
-
-
 # svg
 this is a compilation of notes taken (either directly or indirectly) from Sarah Drasner
-
 
 > **Workshop: Advanced SVG Animations**
 [CodePen Collection](https://codepen.io/collection/XvBQJQ/) | [GitHub](https://github.com/sdras/frontendmasters-svganimation)
 >
->Slides (3 parts):
-  http://slides.com/sdrasner/frontendmasters1#/
+> Slides (3 parts):
+  http://slides.com/sdrasner/frontendmasters1
   http://slides.com/sdrasner/frontendmasters2
-  http://slides.com/sdrasner/frontendmasters3#/
+  http://slides.com/sdrasner/frontendmasters3
 
 * [SVGOMG](https://jakearchibald.github.io/svgomg/)
 * [Peter Collingridge's SVG Editor](http://petercollingridge.appspot.com/svg-editor)
-* [SVGO](https://github.com/svg/svgo) / [SVGO-GUI](https://github.com/svg/svgo-gui)
 * [svgrepo](https://www.svgrepo.com/vectors/html/)
 
+online svg editors:
+
+* [DRAW SVG](http://www.drawsvg.org)
+* [SVG URL encoder](https://yoksel.github.io/url-encoder/)
 
 ---
 
@@ -45,7 +30,7 @@ rx and ry
 
 
 **Default**: 
-<code class="reset">preserveAspectRatio="xMidYMid meet"</code>
+`preserveAspectRatio="xMidYMid meet`
 
 >uniformly scales, like *background-size: cover;*
 >
@@ -80,13 +65,10 @@ the viewBox is scaled **down** as much as possible, meeting other critieria
 
 capital letters are `absolute` data and lowercase is relative
 
-### data
 
-<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1790156/path-table1.jpg">
+<details><summary>data paths</summary><img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1790156/path-table1.jpg"></details>
 
-### curve commands
-
-<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1790146/path-table.jpg">
+<details><summary>curve command</summary><img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1790146/path-table.jpg"></details>
 
 
 
@@ -123,7 +105,7 @@ use fill, and remove the fill from the markup.
 ```
 
 > **Exercise 1:**
-Make a simple SVG with 4+ attributes, optimize it, and animate at least two elements.
+> Make a simple SVG with 4+ attributes, optimize it, and animate at least two elements.
 >
 > * Illustrator
 > * Sketch
@@ -163,8 +145,7 @@ animation: bk 20s -5s linear infinite;
 [^xmlspace]: [SVG xml:space attribute issue](https://stackoverflow.com/questions/11493057/svg-xmlspace-attribute-issue)
 
 
-EXCERCISE 2
-
+<details><summary>EXCERCISE 2</summary>
 
 ```CSS
 //mid and mid-sm are the same
@@ -242,12 +223,12 @@ svg bug that doesn't allow for opacity and transform*/
     }
 }
 ```
-
-<p data-height="265" data-theme-id="light" data-slug-hash="iEGbI" data-default-tab="html,result" data-user="sdras" data-pen-title="Benchmarking SVG Animation - CSS hardware accelerated" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/iEGbI/">Benchmarking SVG Animation - CSS hardware accelerated</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+</details>
 
 
-```
+[Benchmarking SVG Animation - CSS hardware accelerated](https://codepen.io/sdras/pen/iEGbI/) by Sarah Drasner
+
+```css
 .svg-contain {
 	transform: translate3d(0,0,0);
 	-o-transform: translate3d(0,0,0);

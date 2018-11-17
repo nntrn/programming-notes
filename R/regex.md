@@ -1,6 +1,6 @@
 # regex examples & notes
 
-references
+## references
 * [data wrangling with dyplr](http://clayford.github.io/dwir/dwr_07_regular_expressions.html)
 * [sample problems](http://www.cbs.dtu.dk/courses/27610/regular-expressions-cheat-sheet-v2.pdf)
 * [Regular expression cheat sheet](http://www.andrew.cmu.edu/course/15-112-m13/applications/ln/regex.pdf)
@@ -8,9 +8,8 @@ references
 * [DUKE STA523 RegEx](http://www2.stat.duke.edu/~cr173/Sta523_Fa15/regex.html)
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
 
-tools
+## tools
 * [test your regex](https://www.regextester.com/)
-
 
 
 |character|classes|
@@ -45,10 +44,7 @@ tools
 </details>
 
 
-
-
-
-### misc
+## misc
 
 select all by using `.*`
 
@@ -56,7 +52,7 @@ select all by using `.*`
 .*(<img src="https://image.flaticon.com/icons/)(\S{1,}.png).*
 ```
 
-#####`\b(?!ignoreme|ignoreyou)\b\S+` [](https://www.regextester.com/94017)
+`\b(?!ignoreme|ignoreyou)\b\S+` [](https://www.regextester.com/94017)
 
 ```
 aaa ignoreme blabla fasdfdsa

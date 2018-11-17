@@ -678,18 +678,6 @@ html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sideba
 
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-.markdown-preview.markdown-preview {
-  /**
-* blockquote css
-* @author by Tania Rasci
-*/
-  /**
-* prism.js Github theme based on GitHub's theme.
-* @author Sam Clarke
-*/
-  /* Code blocks */
-  /* Inline code */
-}
 
 .markdown-preview.markdown-preview body {
   font-family: -apple-system, Helvetica, Roboto, BlinkMacSystemFont, "Segoe UI", 
