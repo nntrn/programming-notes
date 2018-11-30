@@ -1,6 +1,14 @@
 # svg
 this is a compilation of notes taken (either directly or indirectly) from Sarah Drasner
 
+* [PreserveAspectRatio](#preserveaspectratio)
+* [paths](#paths)
+* [Animating with CSS](#animating-with-css)
+* [GreenSock Overview](#greensock-overview)
+  * [TweenLite/TweenMax](#tweenlitetweenmax)
+  * [stagger](#stagger)
+* [misc](#misc)
+
 > **Workshop: Advanced SVG Animations**
 [CodePen Collection](https://codepen.io/collection/XvBQJQ/) | [GitHub](https://github.com/sdras/frontendmasters-svganimation)
 >
@@ -30,7 +38,7 @@ rx and ry
 
 
 **Default**: 
-`preserveAspectRatio="xMidYMid meet`
+`preserveAspectRatio="xMidYMid meet"`
 
 >uniformly scales, like *background-size: cover;*
 >
@@ -60,6 +68,11 @@ the viewBox is scaled **down** as much as possible, meeting other critieria
 <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1867407/Screen_Shot_2015-10-23_at_4.57.23_AM.png"">
 </details>
 
+
+[example:](https://www.w3.org/TR/SVG/coords.html#PreserveAspectRatioAttribute)
+```html
+<svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 30 40" width="50" height="30">
+```
 
 ## paths 
 
@@ -230,100 +243,182 @@ svg bug that doesn't allow for opacity and transform*/
 
 ```css
 .svg-contain {
-	transform: translate3d(0,0,0);
-	-o-transform: translate3d(0,0,0);
-	-ms-transform: translate3d(0,0,0);
-	-moz-transform: translate3d(0,0,0);
-	-webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 
-	-webkit-backface-visibility: hidden;
-   -moz-backface-visibility: hidden;
-   -ms-backface-visibility: hidden;
-   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
 
-   -webkit-perspective: 1000;
-   -moz-perspective: 1000;
-   -ms-perspective: 1000;
-   perspective: 1000;
-	  
-	animation: slide 2s ease-in-out infinite;
-	-o-animation: slide 2s ease-in-out infinite;
-	-moz-animation: slide 2s ease-in-out infinite;
-	-webkit-animation: slide 2s ease-in-out infinite;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+
+  animation: slide 2s ease-in-out infinite;
+  -o-animation: slide 2s ease-in-out infinite;
+  -moz-animation: slide 2s ease-in-out infinite;
+  -webkit-animation: slide 2s ease-in-out infinite;
 }
 
 @keyframes slide {
-	50% {
-		transform: translate3d(377px,0,0);
-	}
+  50% {
+    transform: translate3d(377px, 0, 0);
+  }
 }
 
 @-o-keyframes slide {
-	50% {
-		-o-transform: translate3d(377px,0,0);
-	}
+  50% {
+    -o-transform: translate3d(377px, 0, 0);
+  }
 }
 
 @-moz-keyframes slide {
-	50% {
-		-moz-transform: translate3d(377px,0,0);
-	}
+  50% {
+    -moz-transform: translate3d(377px, 0, 0);
+  }
 }
 
 @-webkit-keyframes slide {
-	50% {
-		-webkit-transform: translate3d(377px,0,0);
-	}
+  50% {
+    -webkit-transform: translate3d(377px, 0, 0);
+  }
 }
 ```
 
 ![alt CSS Property Animation on the Web](https://s3.amazonaws.com/media-p.slid.es/uploads/75854/images/1790347/css-propery.jpg)
 
-USE OPACITY + TRANSFORM !!
+<mark>USE OPACITY + TRANSFORM !!</mark>
 
 be careful about rotating
 
+## GreenSock Overview
+
+[GreenSock Ease Visualizer](https://greensock.com/ease-visualizer)
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+```
 
 
+### TweenLite/TweenMax 
 
 
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+```
+
+> **Syntax**
+TweenLite/TweenMax .to/.from/.fromTo ( variable, seconds { property:amount, ease });
+
+<details><summary>expand code</summary>
+
+```html
+<div></div>
+```
+```css
+div {
+  width: 40px;
+  height: 40px;
+  background: teal;
+  margin: 0 auto;
+  transform: translate(0, 10px);
+}
+```
+```js
+TweenLite.to("div", 2, {scaleY:0.75, scaleX:1.25, y:100, opacity:0.75, ease:Elastic.easeOut});
+```
+</details>
+
+[view on codepen](https://codepen.io/sdras/pen/f375ce0c3850eb6defaade00ab0dd513)
 
 
+### stagger
 
----
+Things like stagger are really complicated to do in CSS animation, and in GSAP are one line of code.
 
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+```
 
 <details>
+<summary>expand code</summary>
 
+```html
+<div class='scene'>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+  <div class='squares'></div>
+</div>
+```
+```SCSS
+/* SCSS */
+$i: 40px;
 
-<summary>Fluid motion is not just the way things move but how things move. 
-</summary>
+.squares {
+  float: left;
+  width: $i;
+  height: $i;
+  margin-left: $i/4;
+  background: #3f717c;
+}
 
-A beautiful animation can become unsuccessful when there are unnecessary repaints and elements are not properly hardware accelerated. This involves thinking about the element itself along with the way we animate it. Animations should be performed with transforms and opacity where possible. Animated elements must be hardware accelerated (see the docs for our .accelerate class).
+.scene {
+  margin: $i/2 auto;
+  display: table;
+}
+```
+```js
+TweenMax.staggerTo(".squares", 2, {
+  y:100, 
+  backgroundColor:"#4f9d88",
+  ease:Elastic.easeOut
+}, 0.05);
 
-Mobile web pages should specify initial-scale=1.0 in the meta tag so that the device is not waiting the required 300MS on the secondary tap before calling action. Interaction for touch events must either start from a larger touch-target (40px x 40px or greater) or use @media(pointer:coarse) when support increases.
+TweenMax.staggerTo(".squares", 2, {
+  rotation:200, 
+  delay:1, 
+  scale:0.5, 
+  backgroundColor:"#72b165",
+  ease:Elastic.easeOut
+}, 0.025);
+```
 
-SVG should be used in place of jpg, png, or gif for animated elements due to their small filesize when properly designed for performance. The exception to this rule being an element that has to grow many scales higher than its original state, which is a poor use case for SVG due to the cost of that rerender. SVG must be properly optimized with tools like SVGOMG, SVGO, or Peter Coolinridge's SVG Editor.
 
 </details>
 
+[view on codepen](https://codepen.io/sdras/pen/93aa4abc0248757c934882bf4dac3710)
 
 
 
-<details>
 
-<summary> expand
 
-# storytelling-js
 
-</summary>
 
-[^storytelling]:http://slides.com/sdrasner/storytelling-js#/
 
-[^storytelling]
 
-Surprise with technique
-SVG Filters
+
+
+
+
+
+## misc
+###Surprise with technique
+<details><summary>SVG Filters</summary>
 
 ```js
 tl.call(addAttr);

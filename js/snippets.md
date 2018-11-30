@@ -6,6 +6,7 @@
   * [Close Window](#close-window)
   * [Copy Selected Text](#copy-selected-text)
   * [Focus OnLoad](#focus-onload)
+  * [arrow functions](#arrow-functions)
 * [css](#css)
   * [gradient border](#gradient-border)
   * [reset style](#reset-style)
@@ -87,6 +88,20 @@ const string = 'food';
 const substring = 'foo';
 
 console.log(string.includes(substring)); // true
+```
+
+### arrow functions
+
+```js
+var materials = [
+  'Hydrogen',
+  'Helium',
+  'Lithium',
+  'Beryllium'
+];
+
+console.log(materials.map(material => material.length));
+// expected output: Array [8, 6, 7, 9]
 ```
 
 ## css 
