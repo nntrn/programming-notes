@@ -6,6 +6,7 @@
 
 <details open><summary>TABLE OF CONTENTS</summary>
 
+* [sites i love](#sites-i-love)
 * [guidelines](#guidelines)
   * [skeleton](#skeleton)
   * [titling](#titling)
@@ -60,7 +61,7 @@
 </details></div>
 
 
-sites i love
+## sites i love
 
 * [flat ui colors](https://flatuicolors.com/)
 * [front end checklist](https://frontendchecklist.io/)

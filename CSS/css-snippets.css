@@ -1,0 +1,34 @@
+/**
+ * CSS SNIPPETS
+ * put together by @nntrn 
+ */
+
+
+/* Table of contents
+-------------------------------------------
+1. primary layout (body, primary divs)
+2. secondary layout (header, footer, sidebar)
+3. tertiary layout (page regions, floats)
+4. text-related (headings, paragraphs, lists)
+5. images, links, and other salient features (pre, code)
+6. general styles (forms, tables, buttons, acronyms et al)
+7. general classes (.clear, .center, .right, .left, etc.)
+
+source: https://perishablepress.com/obsessive-css-code-formatting-organization-comments-and-signatures/
+-------------------------------------------
+*/
+
+
+/* disable text selection highlighting */
+/* source: https://stackoverflow.com/a/4407335 */ 
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
