@@ -1,5 +1,75 @@
 # js snippets
 
+## descriptive blocks
+When you need to include a large explanation generally a single liner won’t do the trick. There are pre-formatted comment templates used in about every area of programming. Descriptive blocks are most notably seen around functions and library files. Whenever you setup a new function it is good practice to add a descriptive block above the declaration.
+
+```
+/**
+  * @desc opens a modal window to display a message
+  * @param string $msg - the message to be displayed
+  * @return bool - success or failure
+*/
+function modalPopup($msg) {
+...
+}
+```
+[source](https://www.hongkiat.com/blog/source-code-comment-styling-tips/)
+
+## find the largest number in an array
+
+```js
+var numbers = [3,342,23,22,124];
+numbers.sort(function(a,b){return b - a});
+alert(numbers[0]);
+```
+[source](https://www.smashingmagazine.com/2010/04/seven-javascript-things-i-wish-i-knew-much-earlier-in-my-career/)
+
+## writing a function to attach CSS classes to elements
+
+```js
+function addclass(elm,newclass){
+  var classes = elm.className.split(' ');
+  classes.push(newclass);
+  elm.className = classes.join(' ');
+}
+```
+
+The thing is, when you add a class to a DOM element, you want to add it either as the first class or to already existing classes with a space in front of it. When you remove classes, you also need to remove the spaces (which was much more important in the past when some browsers failed to apply classes with trailing spaces).
+
+[source](https://www.smashingmagazine.com/2010/04/seven-javascript-things-i-wish-i-knew-much-earlier-in-my-career/)
+
+## simple forEach()
+
+```js
+["A", "B"].forEach(l => console.log(l));
+// → A
+// → B
+```
+
+[source](https://eloquentjavascript.net/05_higher_order.html)
+
+## Transforming with map
+
+* Say we have an array of objects representing scripts, produced by filtering the SCRIPTS array somehow. But we want an array of names, which is easier to inspect.
+* The map method transforms an array by <mark>applying a function to all of its elements and building a new array from the returned values.</mark> The new array will have the same length as the input array, but its content will have been mapped to a new form by the function.
+
+```js
+function map(array, transform) {
+  let mapped = [];
+  for (let element of array) {
+    mapped.push(transform(element));
+  }
+  return mapped;
+}
+
+let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");
+console.log(map(rtlScripts, s => s.name));
+// → ["Adlam", "Arabic", "Imperial Aramaic", …]
+```
+
+[source](https://eloquentjavascript.net/05_higher_order.html)
+
+
 ## arrow functions
 [source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
@@ -146,3 +216,4 @@ Math.floor(Math.random() * 9) - 10;
 ## further reading
 
 * [Javascript BEST PRACTICES](https://www.thinkful.com/learn/javascript-best-practices-1/#Allow-for-Configuration-and-Translation)
+* [eloquent javascript](https://eloquentjavascript.net/)
