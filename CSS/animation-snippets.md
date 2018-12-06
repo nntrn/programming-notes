@@ -35,7 +35,6 @@ source: [SVG ClipPath Animation](https://codepen.io/niklasnoldin/pen/NEvWxm) by 
 @keyframes note-quarter {
   0% { opacity: 0;}
   30% { opacity: 1; }
-
   100% {
     transform: translate(1.5rem, -1rem);
     opacity: 0;

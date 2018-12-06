@@ -9,3 +9,4 @@
 * [Lunicode.js](https://github.com/combatwombat/Lunicode.js) - convert text
 * [Text to ASCII Art Generator (TAAG)](http://patorjk.com/software/taag)
 * [IBM Watson: text to speech](https://text-to-speech-demo.ng.bluemix.net/)
+* [ASCII Generator](http://www.network-science.de/ascii/)
