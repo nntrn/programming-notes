@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>js regex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="simple regex find & replace">
+  <meta name="keywords" content="regex, js, find, replace, nntrn" />
+  <meta name="og:url" content="https://github.com/nntrn">
+  <meta name="google" content="notranslate">
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css" media="all">
+</head>
+
+<body>
+  <div class="container">
+
+    <h1 class="title">js regex</h1>
+    <h1 class="subtitle">simple find & replace</h1>
+
+    <div id="user-textarea">
+      <div class="control" id="find-and-replace" name="find & replace" value="">
+        <input class="control" type="text" id="find" placeholder="find"></input>
+        <input class="control" type="text" id="replace" placeholder="replace"></input>
+
+        <div class="results"></div>
+      </div>
+
+      <div class="control">
+        <textarea v-model="message" placeholder="add multiple lines" value=""
+          id="user-text"></textarea>
+      </div>
+
+      <div id="output" name="preview" class="control" value="">
+        <span style="font-family: monospace; background:#f9e54799">preview:</span>
+        <div class="message">{{ message }}</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    new Vue({
+      el: '#user-textarea',
+      data: {
+        message: ''
+      }
+    })
+
+    var el = function (element) {
+      if (element.charAt(0) === "#") {
+        return document.querySelector(element);
+      }
+      return document.querySelectorAll(element);
+    };
+
+    el("#user-text").addEventListener("mouseout", findRegex);
+
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function replaceAll(str, term, replacement) {
+      return str.replace(new RegExp(term, 'g'), replacement);
+    }
+
+    function findRegex(e) {
+      let txt = el("#find").value;
+      let replaceTxt = el("#replace").value;
+      let re1 = new RegExp(txt);
+
+      let userText = el("#user-text").value;
+
+      let highlighter = (replaceTxt.length > 0) ? "highlight" : "strikeout";
+      let textToReplace = (replaceTxt.length > 0) ? replaceTxt : txt;
+      let replaceTxt2 = "<span class='" + highlighter + "'>" + textToReplace + "</span>";
+
+      // call function
+      let newStr = replaceAll(userText, re1, replaceTxt2);
+
+      el(".results")[0].innerHTML = "<pre>" + re1 + "g</pre>";
+      el(".message")[0].innerHTML = newStr;
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

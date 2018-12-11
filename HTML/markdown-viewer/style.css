@@ -1,0 +1,88 @@
+body {
+  height: 95vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 85vw;
+  margin: 1rem auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  position: absolute;
+  border: 1px solid #F0F1F4;
+  width: 95%;
+  height: 100%;
+  padding: .5rem 1rem;
+  overflow: scroll;
+}
+
+.title {
+  font-family: arial;
+  font-size: 1.7em;
+  float: left;
+}
+
+.subtitle {
+  font-family: 'roboto mono';
+  font-size: .7em;
+  position: absolute;
+}
+
+textarea {
+  width: 100%;
+  height: 30vh;
+  border: 1px solid rgba(0, 0, 0, 0.022);
+  background: #F0F1F4;
+}
+
+.control {
+  padding: .4rem;
+}
+
+#find-and-replace {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.results {
+  width: 100%;
+  color: red;
+}
+
+input {
+  width: 48%;
+  display: flex;
+  font-family: 'roboto mono';
+  border: 1px solid #eaeaea;
+}
+
+#output {
+  margin: .25rem 0;
+  position: relative;
+  font-size: .8em;
+  white-space: pre-line;
+  font-family: 'roboto mono';
+}
+
+.highlight {
+  background: #F9E547;
+}
+
+.gray {
+  background: #F0F1F4;
+}
+
+.strikeout {
+  color: #828284;
+  text-decoration: line-through;
+  background: #F0F1F4;
+  opacity: .7;
+}

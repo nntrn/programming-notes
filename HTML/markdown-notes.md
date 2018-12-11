@@ -1,49 +1,139 @@
-# plugins
+# markdown notes
 
-```
-r1 = f.a("vendor/markdown-it-mark.js","module");`
-```
----
-```
-if (n.use(r1), e.taskList) {
-  var i = f.a("vendor/markdown-it-task-lists.js", "module");
-  n.use(i)
-}
-```
+* [to-do:](#to-do)
+* [heading](#heading)
+* [Horizontal Rules](#horizontal-rules)
+* [Typographic replacements](#typographic-replacements)
+* [Emphasis](#emphasis)
+* [Blockquotes](#blockquotes)
+* [Lists](#lists)
+  * [Unordered](#unordered)
+  * [Ordered](#ordered)
+* [Code](#code)
+* [Tables](#tables)
+* [Links](#links)
+* [Images](#images)
+* [Plugins](#plugins)
+  * [Emojies](#emojies)
+  * [Subscript / Superscript](#subscript--superscript)
+  * [\<ins>](#ins)
+  * [\<mark>](#mark)
+  * [Footnotes](#footnotes)
+  * [Definition lists](#definition-lists)
+  * [Abbreviations](#abbreviations)
+  * [Custom containers](#custom-containers)
+  * [Functional programming for people who hate math.](#functional-programming-for-people-who-hate-math)
+* [Who I Am](#who-i-am)
+* [Who I Am](#who-i-am-1)
+* [What is *functional programming*?](#what-is-functional-programming)
+  * [What does this mean?](#what-does-this-mean)
+  * [To accomplish this, our code follows a few rules:](#to-accomplish-this-our-code-follows-a-few-rules)
+* [Let's *learn how*](#lets-learn-how)
+  * [Rule \#1:](#rule-1)
+* [*Functions *Are Better Than](#functions-are-better-than)
+  * [Scenario: This Beverage List](#scenario-this-beverage-list)
+* [Is **Broken**](#is-broken)
+  * [**Imperative** Programming](#imperative-programming)
+    * [An **Imperative** Approach to Eating:](#an-imperative-approach-to-eating)
+  * [*Declarative* Programming](#declarative-programming)
+    * [A *Declarative* Approach to Eating:](#a-declarative-approach-to-eating)
+* [Got it?](#got-it)
+  * [An **Imperative** Solution](#an-imperative-solution)
+* [Beware the **Pyramid of Doom**!](#beware-the-pyramid-of-doom)
+  * [A *Declarative* Solution](#a-declarative-solution)
+  * [The Result Is *Identical*](#the-result-is-identical)
+* [Okay but...](#okay-but)
+* [What the eff's a](#what-the-effs-a)
+  * [`Array.prototype.map()`](#arrayprototypemap)
+  * [Which means that **this**...](#which-means-that-this)
+  * [...is the same as *this*.](#is-the-same-as-this)
+  * [Protip: get comfortable with *array methods*](#protip-get-comfortable-with-array-methods)
+  * [Rule \#2:](#rule-2)
+* [The Same Input*Always*Returns the](#the-same-inputalwaysreturns-the)
+  * ["Wait. That's dumb. My code already does that."](#wait-thats-dumb-my-code-already-does-that)
+* [Are you **sure**?](#are-you-sure)
+  * [The Jargon:](#the-jargon)
+  * [Scenario: Tell People About Your *Favorite* Thing](#scenario-tell-people-about-your-favorite-thing)
+  * [An **Impure** Solution](#an-impure-solution)
+  * [Wait! New feature request:](#wait-new-feature-request)
+  * [Then Legal Gets Involved:](#then-legal-gets-involved)
+  * [Good Luck Debugging This:](#good-luck-debugging-this)
+  * [A *Pure* Approach](#a-pure-approach)
+  * [We can clearly follow what's happening:](#we-can-clearly-follow-whats-happening)
+  * [Debugging is *easy*:](#debugging-is-easy)
+  * [This Is Called *Referential Transparency*](#this-is-called-referential-transparency)
+  * [We can replace any pure function with its return value & get the *same result*:](#we-can-replace-any-pure-function-with-its-return-value--get-the-same-result)
+  * [Testing's Never Been *Easier*:](#testings-never-been-easier)
+* [Rule \#3:](#rule-3)
+  * [Each Function Does*One Thing*](#each-function-doesone-thing)
+    * [Scenario: Filter by Genre &Sort by *Artist*](#scenario-filter-by-genre-sort-by-artist)
+  * [An **All-In-One** Solution](#an-all-in-one-solution)
+  * [*One Function* Per Step](#one-function-per-step)
+* [But Wait!](#but-wait)
+  * [This is *so freakin' reusable*!](#this-is-so-freakin-reusable)
+  * [What's That *Curry* Thing?](#whats-that-curry-thing)
+  * [`R.curry()`](#rcurry)
+  * [Which allows us to do this:](#which-allows-us-to-do-this)
+  * [Functional programming](#functional-programming)
+  * [To accomplish this, our code follows a few rules:](#to-accomplish-this-our-code-follows-a-few-rules-1)
+  * [You can *go deeper*...](#you-can-go-deeper)
+  * [Resources](#resources)
+* [Heading 2](#heading-2)
+  * [Heading 3](#heading-3)
+  * [Tables](#tables-1)
+  * [Definition Lists](#definition-lists)
+  * [Other](#other)
+    * [Abbreviations](#abbreviations-1)
 
-a~~nnie~~
+## to-do:
 
----
+- [x] buy milk
+- [ ] spagon
+- [ ] annie
+- [ ] blank
 
+## heading
+```
 # h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
 ##### h5 Heading
 ###### h6 Heading
-
+```
 
 ## Horizontal Rules
 
+```
 ___
 
 ---
 
 ***
-
+```
 
 ## Typographic replacements
 
 Enable typographer option to see result.
 
 (c) (C) (r) (R) (tm) (TM) (p) (P) +-
+~~~
+(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+~~~
 
 test.. test... test..... test?..... test!....
+~~~
+test.. test... test..... test?..... test!....
+~~~
 
 !!!!!! ???? ,,  -- ---
-
+~~~
+!!!!!! ???? ,,  -- ---
+~~~
 "Smartypants, double quotes" and 'single quotes'
-
+~~~
+"Smartypants, double quotes" and 'single quotes'
+~~~
 
 ## Emphasis
 
@@ -60,6 +150,14 @@ _This is italic text_
 
 ## Blockquotes
 
+~~~
+> this is a regular blockquote
+
+> Blockquotes can also be nested...
+>> ...by using additional greater-than signs right next to each other...
+> > > ...or with spaces between arrows.
+~~~`
+
 > this is a regular blockquote
 
 > Blockquotes can also be nested...
@@ -70,7 +168,7 @@ _This is italic text_
 
 ## Lists
 
-Unordered
+### Unordered
 
 + Create a list by starting a line with `+`, `-`, or `*`
 + Sub-lists are made by indenting 2 spaces:
@@ -80,7 +178,7 @@ Unordered
     - Nulla volutpat aliquam velit
 + Very easy!
 
-Ordered
+### Ordered
 
 1. Lorem ipsum dolor sit amet
 2. Consectetur adipiscing elit
@@ -795,13 +893,209 @@ Markdown
 
 To see what else you can do with Markdown (including **tables**, **images**, **numbered lists**, and more) take a look at the [Cheatsheet][1]. And then try it out by typing in this box!
 
-[1]: https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet
 
-<style>
+# Heading 1 #
 
-.scroll {height:100px; overflow:scroll;
+Paragraphs are separated by a blank line.
 
+2nd paragraph. *Italic*, **bold**, `monospace`. Itemized lists
+look like:
+
+  * this one
+  * that one
+  * the other one
+
+Note that --- not considering the asterisk --- the actual text
+content starts at 3-columns in.
+
+> Block quotes are
+> written like so.
+>
+> They can span multiple paragraphs,
+> if you like.
+
+With `smartyPants` set to true in the markdown module configuration, you can 
+format your content smartly:
+
+ - Use 3 dashes `---` for an em-dash. (e.g. Note --- Its a cool day)
+ - Use 2 dashes `--` for an en-dash or ranges (e.g. "It's all in chapters 12--14"). 
+ - Three dots `...` will be converted to an ellipsis. (e.g. He goes on and on ...)
+ - Straight quotes ( `"` and `'` ) will be converted to "curly double" and 'curly single'
+ - Backticks-style quotes (<code>``like this''</code>) will be shown as curly entities as well
+ 
+  
+## Heading 2 ##
+
+Here is a numbered list:
+
+1. first item
+2. second item
+3. third item
+
+Note again how the actual text starts at 3 columns in (3 characters
+from the left side). 
+
+Here's a code block sample:
+
+    # Let me re-iterate ...
+    for i in 1 .. 10 { do-something(i) }
+
+As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:
+
+~~~
+define foobar() {
+    print "Welcome to flavor country!";
 }
+~~~
 
-</style>
+(which makes copying & pasting easier). You can optionally mark the
+delimited block for syntax highlighting with any code pretty CSS framework.
+
+~~~python
+import time
+# Quick, count to ten!
+for i in range(10):
+    # (but not *too* quick)
+    time.sleep(0.5)
+    print i
+~~~
+
+  
+### Heading 3 ###
+
+Now a nested list:
+
+1. First, get these ingredients: 
+   - carrots
+   - celery
+   - lentils
+
+2. Boil some water.
+
+3. Dump everything in the pot and follow  
+   this algorithm:
+   - find wooden spoon 
+   - manage pot
+      - uncover pot  
+      - stir  
+      - cover pot  
+      - balance wooden spoon precariously on pot handle  
+   - wait 10 minutes 
+   - goto first step (or shut off burner when done) 
+   
+* Do not bump wooden spoon or it will fall.
+
+Notice again how text always lines up on at 3-space indents (including
+that last line which continues item 3 above). 
+
+Here's a link to [a website](http://foo.bar). Here's a link to a [local
+doc](local-doc.html). Here's a footnote [^1].
+
+[^1]: Footnote text goes here.
+
+### Tables ###
+
+Tables can look like this:
+
+size | material     | color
+---- | ------------ | ------------
+9    | leather      | brown
+10   | hemp canvas  | natural
+11   | glass        | transparent
+
+You can specify alignment for each column by adding colons to separator lines. 
+A colon at the left of the separator line will make the column left-aligned; a 
+colon on the right of the line will make the column right-aligned; colons at both 
+side means the column is center-aligned.
+
+| Item      | Description | Value|
+|:--------- |:-----------:|-----:|
+| Computer  | Desktop PC  |$1600 |
+| Phone     | iPhone 5s   |  $12 |
+| Pipe      | Steel Pipe  |   $1 |
+
+You can apply span-level formatting to the content of each cell using regular Markdown syntax:
+
+| Function name | Description                    |
+| ------------- | ------------------------------ |
+| `help()`      | Display the help window.       |
+| `destroy()`   | **Destroy your computer!**     |
+
+### Definition Lists ###
+
+Apple
+   : Pomaceous fruit of plants of the genus Malus in 
+   the family Rosaceae.
+  
+Orange
+   : The fruit of an evergreen tree of the genus Citrus.  
+  
+Tomatoes
+   : There's no "e" in tomato.
+
+You can put blank lines in between each of the above definition list lines to spread things
+out more.
+
+Apple
+
+:   Pomaceous fruit of plants of the genus Malus in 
+    the family Rosaceae.
+
+Orange
+
+:   The fruit of an evergreen tree of the genus Citrus.
+
+Tomatoes
+
+  : There's no "e" in tomato.  
+
+You can also associate more than one term to a definition:
+
+Term 1
+Term 2
+
+:   Definition a
+:   Definition a
+
+Term 3
+:   Definition b
+
+
+### Other ###
+
+#### Abbreviations ####
+
+(Note heading 4 above)
+
+Markdown Extra adds supports for abbreviations. How it works is pretty simple:[^krajee]
+
+Create an abbreviation definition like this:
+~~~
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+~~~
+
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+
+then, elsewhere in the document, write text such as:
+
+The HTML specification
+is maintained by the W3C.
+
+and watch how the instance of those words in the text are highlighted.
+
+Closing line below.
+
+
+---
+
+##### Done. #####
+
+[^1]: https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet
+[^krajee]: [krajee](http://demos.krajee.com/markdown-demo)
+
+
+
 

@@ -1,0 +1,128 @@
+:root {
+  /*    
+  
+  cursive:
+  'Cedarville Cursive', 
+  'Satisfy' 
+  
+  
+  */
+  
+    --name-font: 'Cedarville Cursive';
+    --name-font-size: 3.1em;
+    --name-text-transform: lowercase;
+    --name-letter-spacing: .5px;
+    --address-font: times;
+    --address-font-size: 1.1em;
+    --address-text-transform: uppercase;
+    --address-letter-spacing: 2.4px;
+  
+  }
+  
+  body {
+    width: 100vw;
+    height: 99vh;
+    box-sizing: border-box;
+    background: #bdcadb17;
+  }
+  
+  .container * {
+    box-sizing: border-box;
+  }
+  
+  .container {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
+  
+  #envelope {
+    border: 4px solid #bdcadb17;
+    padding: 10em 15em;
+    position: absolute;
+    margin: 1rem;
+    background: white;
+  }
+  
+  #send-to {
+    margin: 0px;
+    width: 100%;
+    line-height: 120%;
+    background: #bdcadb2e;
+    background: none;
+  justify-content:center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #send-to * {
+    border-bottom: 2px solid #bdcadb42;
+    box-sizing: border-box;
+  }
+  
+  #recipient {
+    font-size: 3em;
+    line-height: 110%;
+    white-space: pre;
+    font-family: var(--name-font);
+    text-transform: var(--name-text-transform);
+    letter-spacing: var(--name-letter-spacing);
+    font-size: var(--name-font-size);
+  }
+  
+  .address {
+    font-size: 1.2em;
+    line-height: 90%;
+    font-family: var(--address-font);
+    text-transform: var(--address-text-transform);
+    letter-spacing: var(--address-letter-spacing);
+    font-size: var(--address-font-size);
+    display:block;
+   text-align:center;
+  
+  }
+  
+  #send-to :before {
+    content: "#"attr(id);
+    position: absolute;
+    left: 1rem;
+    color: #BDCADB;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+  
+  /*
+  @media all { .page-break { display: none; } }
+  */
+  
+  @media print {
+    .page-break {
+      display: block;
+      page-break-before: always;
+    }
+  }
+  
+  @media print {
+    @page {
+      size: landscape;
+      size: A4;
+    }
+  
+    #send-to :before {
+      all: unset;
+    }
+  
+    #send-to * {
+      background: white;
+      border: unset;
+    }
+  
+    #envelope {}
+  
+    /*
+  
+    .container { transform: rotate(270deg); }
+    body { writing-mode: tb-rl; }
+  
+    */
+  }
