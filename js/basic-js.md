@@ -7,7 +7,21 @@
 [Clean Code](https://github.com/ryanmcdermott/clean-code-javascript)
 [js scope](https://flaviocopes.com/javascript-automatic-semicolon-insertion/)
 
+## variable naming[^variable-naming]
 
+1. The name must contain only letters, digits, symbols $ and _.
+2. The first character must not be a digit.
+
+These names are valid:
+
+```js
+let $ = 1; // declared a variable with the name "$"
+let _ = 2; // and now a variable with the name "_"
+
+alert($ + _); // 3
+```
+
+[^variable-naming]: https://javascript.info/variables#variable-naming
 
 ## array methods
 
@@ -65,3 +79,44 @@ Key Takeaways[^mapforeach]
 * forEach() will allow a callback function to mutate the current array. `map()` will instead return a new array
 
 [^mapforeach]: https://codeburst.io/javascript-map-vs-foreach-f38111822c0f
+
+
+## Self-Invoking Functions
+* Function expressions can be made "self-invoking".
+* A self-invoking expression is invoked (started) automatically, without being called.
+* Function expressions will execute automatically if the expression is followed by `()`.
+
+You cannot self-invoke a function declaration
+
+```js
+(function () {
+  var x = "Hello!!";      // I will invoke myself
+})();
+```
+
+Source: [W3Schools](https://www.w3schools.com/js/js_function_definition.asp)
+
+## Arrow Functions
+Arrow functions allows a short syntax for writing function expressions.
+
+* You don't need the function keyword, the return keyword, and the curly brackets.
+* Arrow functions are not hoisted. ==They must be defined before they are used.==
+
+```js
+// ES5
+var x = function(x, y) {
+  return x * y;
+}
+
+// ES6
+const x = (x, y) => x * y; 
+
+const x = (x, y) => { return x * y };
+```
+
+> Using `const` is safer than using var, because a function expression is always constant value.
+
+You can only omit the `return` keyword and the curly brackets if the function is a single statement. Because of this, it might be a good habit to always keep them:
+
+
+Source: [W3Schools](https://www.w3schools.com/js/js_function_definition.asp)

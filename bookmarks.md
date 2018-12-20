@@ -13,3 +13,7 @@
 
 # svg 
 * [vivus-instant](https://maxwellito.github.io/vivus-instant/) draw svg
+* [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ) by Anthony Dugois
+
+# js
+* [JavaScript ES6: 5 new abstractions to improve your code](https://blog.logrocket.com/javascript-es6-5-new-abstractions-to-improve-your-code-54a369e82407) by Glad Chinda
